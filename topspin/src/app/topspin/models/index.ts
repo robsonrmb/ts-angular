@@ -1,0 +1,7 @@
+export * from './forms'
+export * from './usuario.model'
+export * from './login.model'
+export * from './convite.model'
+export * from './jogo.model'
+export * from './avaliacao.model'
+export * from './beans'

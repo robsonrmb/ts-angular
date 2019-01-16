@@ -1,0 +1,214 @@
+<div class="content-wrapper">
+    <div class="container-fluid">
+  
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="javascript: return false;">Home</a>
+        </li>
+        <li class="breadcrumb-item">
+          Avalie um atleta
+        </li>
+      </ol>
+      
+      <div class="col-12"> 
+          
+        <!-- conteúdo da página -->
+        <form #formAvaliacoes="ngForm" novalidate>
+  
+          <h4>CADASTRAR AVALIAÇÕES</h4>
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label form="data">Estado</label>
+                <select name="estadoUsuario" 
+                        [(ngModel)]="estado" 
+                        #estadoUsuario="ngModel" 
+                        (change)="atualizaUsuarios(estado)"
+                        class="form-control">
+                  <option *ngFor="let estado of estados" value="{{estado.chave}}">{{estado.valor}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-4">
+              <div class="form-group">
+                <label form="data">Usuários</label>
+                <select required 
+                        name="avaliado" 
+                        [(ngModel)]="avaliacao.idAvaliado" 
+                        #avaliado="ngModel"
+                        class="form-control">
+                  <option *ngFor="let usuario of usuarios" value="{{usuario.chave}}">{{usuario.valor}}</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row bg-light">
+            <div class="col-12">
+              <h5>Avaliações Técnicas</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <div class="form-group">
+                <label form="tipo">Saque</label>
+                <select required 
+                        name="saque" 
+                        [(ngModel)]="avaliacao.respostaSaque" 
+                        #saque="ngModel"
+                        class="form-control">
+                  <option *ngFor="let resposta of respostas" value="{{resposta.chave}}">{{resposta.valor}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-2">  
+              <div class="form-group">
+                <label form="resultado">Forehand</label>
+                <select required 
+                        name="forehand" 
+                        [(ngModel)]="avaliacao.respostaForehand" 
+                        #forehand="ngModel"
+                        class="form-control">
+                  <option *ngFor="let resposta of respostas" value="{{resposta.chave}}">{{resposta.valor}}</option>
+                </select>
+              </div>  
+            </div>
+            <div class="col-2">  
+              <div class="form-group">
+                <label form="placar">Backhand</label>
+                <select required 
+                        name="backhand"  
+                        [(ngModel)]="avaliacao.respostaBackhand" 
+                        #backhand="ngModel"
+                        class="form-control">
+                  <option *ngFor="let resposta of respostas" value="{{resposta.chave}}">{{resposta.valor}}</option>
+                </select>
+              </div>  
+            </div>
+            <div class="col-2">  
+              <div class="form-group">
+                <label form="resultado">Voleio</label>
+                <select required 
+                        name="voleio" 
+                        [(ngModel)]="avaliacao.respostaVoleio" 
+                        #voleio="ngModel"
+                        class="form-control">
+                  <option *ngFor="let resposta of respostas" value="{{resposta.chave}}">{{resposta.valor}}</option>
+                </select>
+              </div>  
+            </div>
+            <div class="col-2">  
+              <div class="form-group">
+                <label form="placar">Smash</label>
+                <select required 
+                        name="smash" 
+                        [(ngModel)]="avaliacao.respostaSmash" 
+                        #smash="ngModel"
+                        class="form-control">
+                  <option *ngFor="let resposta of respostas" value="{{resposta.chave}}">{{resposta.valor}}</option>
+                </select>
+              </div>  
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">&nbsp;</div>
+          </div>
+          <div class="row bg-light">
+            <div class="col-12">
+              <h5>Avaliações Táticas</h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <div class="form-group">
+                <label form="tipo">Ofensivo</label>
+                <select required 
+                        name="ofensivo" 
+                        [(ngModel)]="avaliacao.respostaOfensivo" 
+                        #ofensivo="ngModel"
+                        class="form-control">
+                  <option *ngFor="let resposta of respostas" value="{{resposta.chave}}">{{resposta.valor}}</option>
+                </select>
+              </div>
+            </div>
+            <div class="col-2">  
+              <div class="form-group">
+                <label form="resultado">Defensivo</label>
+                <select required 
+                        name="defensivo" 
+                        [(ngModel)]="avaliacao.respostaDefensivo" 
+                        #defensivo="ngModel"
+                        class="form-control">
+                  <option *ngFor="let resposta of respostas" value="{{resposta.chave}}">{{resposta.valor}}</option>
+                </select>
+              </div>  
+            </div>
+            <div class="col-2">  
+              <div class="form-group">
+                <label form="placar">Tático</label>
+                <select required 
+                        name="tatico" 
+                        [(ngModel)]="avaliacao.respostaTatico" 
+                        #tatico="ngModel"
+                        class="form-control">
+                  <option *ngFor="let resposta of respostas" value="{{resposta.chave}}">{{resposta.valor}}</option>
+                </select>
+              </div>  
+            </div>
+            <div class="col-2">  
+              <div class="form-group">
+                <label form="resultado">Competitivo</label>
+                <select required 
+                        name="competitivo" 
+                        [(ngModel)]="avaliacao.respostaCompetitivo" 
+                        #competitivo="ngModel"
+                        class="form-control">
+                  <option *ngFor="let resposta of respostas" value="{{resposta.chave}}">{{resposta.valor}}</option>
+                </select>
+              </div>  
+            </div>
+            <div class="col-2">  
+              <div class="form-group">
+                <label form="placar">Preparo físico</label>
+                <select required 
+                        name="preparo" 
+                        [(ngModel)]="avaliacao.respostaPreparo" 
+                        #preparo="ngModel"
+                        class="form-control">
+                  <option *ngFor="let resposta of respostas" value="{{resposta.chave}}">{{resposta.valor}}</option>
+                </select>
+              </div>  
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <input 
+                type="submit"
+                (click)="avaliar()"
+                value="Avaliar"
+                [disabled]="!formAvaliacoes.form.valid"
+                class="btn btn-primary"
+                style="width: 150px;">
+  
+              &nbsp;
+              <button 
+                type="button" 
+                onclick="window.history.back(-1)"
+                class="btn btn-secondary"
+                style="width: 150px;">Voltar</button>
+            </div>
+          </div>
+        </form>
+        <!-- fim do conteúdo -->
+  
+      </div>
+  
+    </div>
+    <footer class="sticky-footer">
+      <div class="container">
+        <div class="text-center">
+          <small>Copyright TopSpin 2019</small>
+        </div>
+      </div>
+    </footer>
+  </div>
+  
