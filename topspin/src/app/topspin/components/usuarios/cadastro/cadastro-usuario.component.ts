@@ -18,6 +18,8 @@ export class CadastroUsuarioComponent implements OnInit {
   estados: ChaveValor[]
   tipos: ChaveValor[]
   niveis: ChaveValor[] 
+  mensagemTop: string
+  mensagemTipo: string
 
   constructor(private usuarioService: UsuarioService) { }
 
@@ -31,13 +33,17 @@ export class CadastroUsuarioComponent implements OnInit {
     this.estados = ESTADOS
     this.niveis = NIVEIS
     this.tipos = TIPOSCD
+    this.mensagemTop = ''
+    this.mensagemTipo = ''
   }
 
   salvar() {
     this.usuarioService.altera(this.usuario)
         .subscribe(
           (result) => {
-            console.log('Usuário alterado com sucesso!!!')
+            this.mensagemTipo = 'S'
+            this.mensagemTop = 'Usuário alterado com sucesso!!!'
+            console.log('chegou.......')
           }
         )
   }

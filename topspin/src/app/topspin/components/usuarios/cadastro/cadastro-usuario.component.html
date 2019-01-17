@@ -16,6 +16,26 @@
         <form #formUsuarios="ngForm" novalidate>
 
           <h4>DADOS CADASTRAIS</h4>
+          <div class="row" *ngIf="mensagemTipo != undefined && mensagemTipo == 'S'">
+            <div class="col-12">
+              <div class="alert alert-success alert-dismissible fade-show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                {{mensagemTop}}
+              </div>
+            </div>
+          </div>
+          <div class="row" *ngIf="mensagemTipo != undefined && mensagemTipo == 'E'">
+            <div class="col-12">
+              <div class="alert alert-danger alert-dismissible fade-show" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+                {{mensagemErro}}
+              </div>
+            </div>
+          </div>
           <div class="row">
             <div class="col-4">
               <div class="form-group">
@@ -38,7 +58,8 @@
                         [(ngModel)]="usuario.nome"
                         #nome="ngModel"
                         class="form-control" 
-                        placeholder="Informe seu nome" />
+                        placeholder="Informe seu nome"
+                        required />
               </div>
             </div>
             <div class="col-4">  
@@ -59,7 +80,8 @@
                         id="dataNascimento" 
                         [(ngModel)]="usuario.dataNascimento"
                         #dataNascimento="ngModel"
-                        class="form-control" />
+                        class="form-control"
+                        required />
               </div>  
             </div>
           </div>
@@ -70,7 +92,8 @@
                 <select name="estado" 
                         [(ngModel)]="usuario.estado" 
                         #estado="ngModel"
-                        class="form-control">
+                        class="form-control"
+                        required>
                   <option *ngFor="let estado of estados" value="{{estado.chave}}">{{estado.valor}}</option>
                 </select>
               </div>
@@ -141,6 +164,12 @@
             </div>
           </div>
         </form>
+        <div class="row">
+          &nbsp;
+        </div>
+        <div class="row">
+          &nbsp;
+        </div>
         <!-- fim do conteúdo -->
   
       </div>

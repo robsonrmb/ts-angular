@@ -16,13 +16,15 @@ export class AmigoComponent implements OnInit {
 
   usuario: Usuario
   listaDeAmigos: Usuario[]
-  mensagemGrid: string
+  mensagemTop: string
+  mensagemTipo: string
   
   constructor(private amigoService: AmigoService,
               private usuarioService: UsuarioService,
               private router: Router) { }
 
   ngOnInit() {
+    this.mensagemTop = ''
     this.amigoService
       .listaAmigos(this.usuarioService.getUsuario().id)
       .subscribe(
@@ -39,6 +41,8 @@ export class AmigoComponent implements OnInit {
         .subscribe(
           (result) => {
             this.retiraUsuarioDaLista(u.id)
+            this.mensagemTipo = 'S'
+            this.mensagemTop = 'Usuário retirado da lista de amigos com sucesso!!!'
           }
         )
   }
@@ -53,7 +57,8 @@ export class AmigoComponent implements OnInit {
 
   isListaDeAmigosVazia(): boolean {
     if (this.listaDeAmigos === undefined || this.listaDeAmigos.length === 0) {
-      this.mensagemGrid = 'Nenhum amigo encontrado.'
+      this.mensagemTipo = 'W'
+      this.mensagemTop = 'Nenhum amigo encontrado.'
       return true
     }else{
       return false

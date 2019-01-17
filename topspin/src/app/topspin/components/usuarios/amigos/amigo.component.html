@@ -16,11 +16,33 @@
       <form #formUsuarios="ngForm" novalidate>
 
         <h4>MEUS AMIGOS</h4>
-        <div class="row">
+        <div class="row" *ngIf="mensagemTipo != undefined && mensagemTipo == 'S'">
           <div class="col-12">
-            <hr>
-            <div *ngIf="isListaDeAmigosVazia()">
-              {{mensagemGrid}}
+            <div class="alert alert-success alert-dismissible fade-show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{mensagemTop}}
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="mensagemTipo != undefined && mensagemTipo == 'E'">
+          <div class="col-12">
+            <div class="alert alert-danger alert-dismissible fade-show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{mensagemTop}}
+            </div>
+          </div>
+        </div>
+        <div class="row" *ngIf="isListaDeAmigosVazia() && mensagemTipo != undefined && mensagemTipo == 'W'">
+          <div class="col-12">
+            <div class="alert alert-warning alert-dismissible fade-show" role="alert">
+              <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              {{mensagemTop}}
             </div>
           </div>
         </div>
