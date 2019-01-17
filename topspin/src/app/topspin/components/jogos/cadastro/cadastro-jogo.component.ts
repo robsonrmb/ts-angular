@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ɵConsole } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { Jogo, ChaveValor } from '../../../models';
-import { TIPOSJOGO, RESULTADOS, PLACARES } from '../../../constantes';
+import { Jogo, ChaveValor, Mensagem } from '../../../models';
+import { TIPOSJOGO, RESULTADOS, PLACARES, MensagemEnum } from '../../../constantes';
 import { UsuarioService, JogoService } from '../../../services';
 
 @Component({
@@ -18,6 +18,7 @@ export class CadastroJogoComponent implements OnInit {
   tipos: ChaveValor[]
   resultados: ChaveValor[]
   placares: ChaveValor[] 
+  mensagem: Mensagem
   
   constructor(private usuarioService: UsuarioService,
               private jogoService: JogoService) { }
@@ -29,6 +30,7 @@ export class CadastroJogoComponent implements OnInit {
     this.tipos = TIPOSJOGO
     this.resultados = RESULTADOS
     this.placares = PLACARES
+    this.mensagem = new Mensagem()
   }
 
   salvar() {
@@ -38,34 +40,34 @@ export class CadastroJogoComponent implements OnInit {
       this.jogoService.inclui(this.jogo)
           .subscribe(
             (result) => {
-              console.log('Jogo incluído com sucesso!!!')
+              this.mensagem = new Mensagem(MensagemEnum.S, 'Jogo incluído com sucesso!!!')
             },
-            (error) => console.log('Erro ao incluir jogo.')
+            (error) => this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao incluir jogo.')
           )
     }else{
-      console.log(msg)
+      this.mensagem = new Mensagem(MensagemEnum.E, msg)
     }
   }
 
   validaFormulario(): string {
     let mensagem: string = ''
-    if (this.jogo.placar == "2a0") {
+    if (this.jogo.placar == "0") { //2a0
       if (this.jogo.qtdTieVencidos > 2 || this.jogo.qtdTiePerdidos > 0) {
         mensagem = "Erro"
       }
-    }else if (this.jogo.placar == "2a1") {
+    }else if (this.jogo.placar == "1") { //2a1
       if (this.jogo.qtdTieVencidos > 2 || this.jogo.qtdTiePerdidos > 1) {
         mensagem = "Erro"
       }
-    }else if (this.jogo.placar == "3a0") {
+    }else if (this.jogo.placar == "2") { //3a0
       if (this.jogo.qtdTieVencidos > 3 || this.jogo.qtdTiePerdidos > 0) {
         mensagem = "Erro"
       }
-    }else if (this.jogo.placar == "3a1") {
+    }else if (this.jogo.placar == "3") { //3a1
       if (this.jogo.qtdTieVencidos > 3 || this.jogo.qtdTiePerdidos > 1) {
         mensagem = "Erro"
       }
-    }else if (this.jogo.placar == "3a2") {
+    }else if (this.jogo.placar == "4") { //3a2
       if (this.jogo.qtdTieVencidos > 3 || this.jogo.qtdTiePerdidos > 2) {
         mensagem = "Erro"
       }

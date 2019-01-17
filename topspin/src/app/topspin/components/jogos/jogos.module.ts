@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CadastroJogoComponent } from './cadastro';
 import { UsuarioService, JogoService } from '../../services';
 import { NumeroDirective } from '../../directives';
+import { SharedModule } from '../shared';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { NumeroDirective } from '../../directives';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [
     UsuarioService,
