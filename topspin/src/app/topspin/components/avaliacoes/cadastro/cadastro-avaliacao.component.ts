@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
-import { Usuario, ChaveValor, Avaliacao } from 'src/app/topspin/models';
+import { Usuario, ChaveValor, Avaliacao, Mensagem } from 'src/app/topspin/models';
 import { AvaliacaoService, UsuarioService } from '../../../services';
 import { ESTADOS, RESPOSTAS_PERFORMANCE } from '../../../constantes';
 
@@ -19,8 +19,8 @@ export class CadastroAvaliacaoComponent implements OnInit {
   estado: string
   estados: ChaveValor[]
   usuarios: ChaveValor[]
-
   respostas: ChaveValor[]
+  mensagem: Mensagem
 
   constructor(private avaliacaoService: AvaliacaoService,
               private usuarioService: UsuarioService,
@@ -44,7 +44,8 @@ export class CadastroAvaliacaoComponent implements OnInit {
                   )
             }
           )
-      
+     
+    this.mensagem = new Mensagem()
     }
 
     this.avaliacao = new Avaliacao()
@@ -65,7 +66,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.avaliacaoService.inclui(this.avaliacao)
         .subscribe(
           (result) => {
-            console.log('Avaliação salva com sucesso!!!')
+            //this.mensagem = new Mensagem(MensagemEnum.S, 'Avaliação salva com sucesso!!!')
             this.router.navigate(['dashboard'])
           },
           (error) => console.log('Erro ao incluir avaliação!!!')

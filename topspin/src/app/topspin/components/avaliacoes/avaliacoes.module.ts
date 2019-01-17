@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AvaliacaoService, UsuarioService } from '../../services';
 import { CadastroAvaliacaoComponent } from './cadastro';
 import { PesquisaAvaliacaoComponent } from './pesquisa';
+import { SharedModule } from '../shared';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PesquisaAvaliacaoComponent } from './pesquisa';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [
     AvaliacaoService,

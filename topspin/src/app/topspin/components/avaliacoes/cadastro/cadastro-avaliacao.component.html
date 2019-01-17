@@ -11,11 +11,13 @@
       </ol>
       
       <div class="col-12"> 
-          
         <!-- conteúdo da página -->
         <form #formAvaliacoes="ngForm" novalidate>
   
           <h4>CADASTRAR AVALIAÇÕES</h4>
+          
+          <app-mensagens [mensagem]="mensagem"></app-mensagens>
+        
           <div class="row">
             <div class="col-4">
               <div class="form-group">

@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Avaliacao } from '../../../models';
+import { Avaliacao, Mensagem } from '../../../models';
 import { AvaliacaoService, UsuarioService } from '../../../services';
+import { MensagemEnum } from 'src/app/topspin/constantes';
 
 @Component({
   selector: 'app-pesquisa-avaliacao',
@@ -16,7 +17,7 @@ export class PesquisaAvaliacaoComponent implements OnInit {
 
   avaliacao: Avaliacao
   listaDeAvaliacoes: Avaliacao[]
-  mensagemGrid: string
+  mensagem: Mensagem
   
   constructor(private avaliacaoService: AvaliacaoService,
               private usuarioService: UsuarioService,
@@ -26,11 +27,18 @@ export class PesquisaAvaliacaoComponent implements OnInit {
     let aval: Avaliacao = new Avaliacao()
     aval.idUsuario = this.usuarioService.getUsuario().id
     aval.status = 'P'
+    this.mensagem = new Mensagem()
+
     this.avaliacaoService
       .listaAvaliacoesRecebidasPorUsuarioEStatus(aval)
       .subscribe(
         (result) => {
           this.listaDeAvaliacoes = result
+          this.mensagem = new Mensagem()
+          if (this.listaDeAvaliacoes == undefined || this.listaDeAvaliacoes.length == 0) {
+            this.mensagem = new Mensagem(MensagemEnum.W, 'Nenhuma avaliação encontrada!!!')
+          }
+          
         }
       )
   }
@@ -40,10 +48,10 @@ export class PesquisaAvaliacaoComponent implements OnInit {
       .aceita(aval)
       .subscribe(
         (result) => {
-          console.log('Avaliação confirmada!!!')
+          //this.mensagem = new Mensagem(MensagemEnum.S, 'Avaliação confirmada com sucesso!!!')
           this.router.navigate(['dashboard'])
         },
-        (error) => console.log('Erro ao confirmar avaliação!!!')
+        (error) => this.mensagem = new Mensagem(MensagemEnum.S, 'Erro ao confirmar avaliação!!!')
       )
   }
 
@@ -52,16 +60,16 @@ export class PesquisaAvaliacaoComponent implements OnInit {
       .recusa(aval)
       .subscribe(
         (result) => {
-          console.log('Avaliação recusada!!!')
+          //this.mensagem = new Mensagem(MensagemEnum.S, 'Avaliação recusada com sucesso!!!')
           this.router.navigate(['dashboard'])
         },
-        (error) => console.log('Erro ao recusar avaliação!!!')
+        (error) => this.mensagem = new Mensagem(MensagemEnum.S, 'Erro ao recusar avaliação!!!')
       )
   }
 
   isListaDeAvaliacoesVazia(): boolean {
     if (this.listaDeAvaliacoes === undefined || this.listaDeAvaliacoes.length === 0) {
-      this.mensagemGrid = 'Nenhuma avaliação encontrada.'
+      this.mensagem = new Mensagem(MensagemEnum.W, 'Nenhuma avaliação encontrada!!!')
       return true
     }else{
       return false
