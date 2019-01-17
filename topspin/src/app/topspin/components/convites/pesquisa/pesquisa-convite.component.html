@@ -11,10 +11,11 @@
     </ol>
 
     <div class="col-12">
-
       <!-- conteúdo da página -->
       <h4>MEUS CONVITES</h4>
 
+      <app-mensagens [mensagem]="mensagem"></app-mensagens>
+        
       <!-- CONVITES ENVIADOS -->
       <div class="row" *ngIf="isListaDeConvitesDoUsuarioVazia()">
         <div class="col-12">

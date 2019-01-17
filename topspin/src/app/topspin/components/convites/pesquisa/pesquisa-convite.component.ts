@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Convite } from 'src/app/topspin/models';
+import { Convite, Mensagem } from 'src/app/topspin/models';
 import { UsuarioService, ConviteService } from 'src/app/topspin/services';
+import { MensagemEnum } from 'src/app/topspin/constantes';
 
 @Component({
   selector: 'app-pesquisa-convite',
@@ -21,6 +22,7 @@ export class PesquisaConviteComponent implements OnInit {
   msgGridConviteUsuario: string
   msgGridConvitePConvidado: string
   msgGridConviteNPConvidado: string
+  mensagem: Mensagem
   
   constructor(private conviteService: ConviteService,
               private usuarioService: UsuarioService,
@@ -28,6 +30,7 @@ export class PesquisaConviteComponent implements OnInit {
 
   ngOnInit() {
     this.carregaGrids()
+    this.mensagem = new Mensagem()
   }
 
   excluirConvite(convite: Convite) {
@@ -36,9 +39,10 @@ export class PesquisaConviteComponent implements OnInit {
       .exclui(convite.id)
       .subscribe(
         (result) => {
+          this.mensagem = new Mensagem(MensagemEnum.S, 'Convite excluído com sucesso!!!')
           this.carregaGrids()
         },
-        (error) => console.error('Erro ao excluir convite.')
+        (error) => this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao excluir convite!!!')
       )
   }
 
@@ -48,9 +52,10 @@ export class PesquisaConviteComponent implements OnInit {
       .aceita(convite)
       .subscribe(
         (result) => {
+          this.mensagem = new Mensagem(MensagemEnum.S, 'Convite aceito com sucesso!!!')
           this.carregaGrids()
         },
-        (error) => console.error('Erro ao aceitar convite.')
+        (error) => this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao aceitar convite!!!')
       )
   }
 
@@ -60,9 +65,10 @@ export class PesquisaConviteComponent implements OnInit {
       .recusa(convite)
       .subscribe(
         (result) => {
+          this.mensagem = new Mensagem(MensagemEnum.S, 'Convite recusado com sucesso!!!')
           this.carregaGrids()
         },
-        (error) => console.error('Erro ao recusar convite.')
+        (error) => this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao recusar convite!!!')
       )
   }
 

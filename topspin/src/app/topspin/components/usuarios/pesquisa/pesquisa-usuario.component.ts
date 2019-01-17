@@ -2,8 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { ChaveValor, Usuario, FormUsuarioAmigo } from '../../../models';
-import { ESTADOS } from '../../../constantes';
+import { ChaveValor, Usuario, FormUsuarioAmigo, Mensagem } from '../../../models';
+import { ESTADOS, MensagemEnum } from '../../../constantes';
 import { UsuarioService, AmigoService } from '../../../services';
 
 @Component({
@@ -18,6 +18,7 @@ export class PesquisaUsuarioComponent implements OnInit {
   usuario: Usuario
   listaDeUsuarios: Usuario[]
   estados: ChaveValor[]
+  mensagem: Mensagem
   mensagemGrid: string
   
   constructor(private usuarioService: UsuarioService,
@@ -27,21 +28,11 @@ export class PesquisaUsuarioComponent implements OnInit {
   ngOnInit() {
     this.usuario = new Usuario()
     this.estados = ESTADOS
+    this.mensagem = new Mensagem()
     this.mensagemGrid = ''
   }
 
   pesquisar() {
-    /*
-    this.usuarioService
-      .listaPorEstado(this.usuario.estado)
-      .subscribe(
-        (result) => {
-          console.log(result)
-          this.listaDeUsuarios = result
-        }
-      )
-    */
-    
     let u: Usuario = new Usuario()
     u.nome = this.usuario.nome
     u.email = this.usuario.email
@@ -53,6 +44,9 @@ export class PesquisaUsuarioComponent implements OnInit {
       .subscribe(
         (result) => {
           this.listaDeUsuarios = result
+        },
+        (error) => {
+          this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao pesquisar usuários!!!')
         }
       )
   }
@@ -64,6 +58,10 @@ export class PesquisaUsuarioComponent implements OnInit {
         .subscribe(
           (result) => {
             this.mudaStatusDeAmigoDoUsuarioDaLista(u.id)
+            this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário colocado como amigo com sucesso!!!')
+          },
+          (error) => {
+            this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao colocar usuário como amigo!!!')
           }
         )
   }
@@ -75,6 +73,10 @@ export class PesquisaUsuarioComponent implements OnInit {
         .subscribe(
           (result) => {
             this.mudaStatusDeAmigoDoUsuarioDaLista(u.id)
+            this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário retirado como amigo com sucesso!!!')
+          },
+          (error) => {
+            this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao retirar usuário como amigo!!!')
           }
         )
   }

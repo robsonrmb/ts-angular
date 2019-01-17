@@ -45,6 +45,9 @@ export class AmigoComponent implements OnInit {
           (result) => {
             this.retiraUsuarioDaLista(u.id)
             this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário retirado da lista de amigos com sucesso!!!')
+          },
+          (error) => {
+            this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao retirar usuário como amigo!!!')
           }
         )
   }

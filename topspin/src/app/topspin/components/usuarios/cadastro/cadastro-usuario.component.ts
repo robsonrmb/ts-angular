@@ -40,6 +40,9 @@ export class CadastroUsuarioComponent implements OnInit {
         .subscribe(
           (result) => {
             this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário alterado com sucesso!!!')
+          },
+          (error) => {
+            this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao alterar usuário!!!')
           }
         )
   }

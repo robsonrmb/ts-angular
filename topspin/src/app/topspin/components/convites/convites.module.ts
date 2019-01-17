@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { CadastroConviteComponent } from './cadastro';
 import { PesquisaConviteComponent, DetalheConviteComponent } from './pesquisa';
 import { ConviteService, UsuarioService } from '../../services';
+import { SharedModule } from '../shared';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ConviteService, UsuarioService } from '../../services';
   imports: [
     CommonModule,
     RouterModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ],
   providers: [
     ConviteService,
