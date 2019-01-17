@@ -24,14 +24,19 @@ export class AmigoComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.mensagemTop = ''
     this.amigoService
       .listaAmigos(this.usuarioService.getUsuario().id)
       .subscribe(
         (result) => {
           this.listaDeAmigos = result
+          if (this.listaDeAmigos !== undefined && this.listaDeAmigos.length > 0) {
+            this.mensagemTipo = ''
+            this.mensagemTop = ''
+          }
         }
       )
+    this.mensagemTop = ''
+    this.mensagemTipo = ''
   }
 
   retirarComoAmigo(u: Usuario) {
