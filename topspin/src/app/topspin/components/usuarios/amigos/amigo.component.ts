@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { Usuario, FormUsuarioAmigo } from '../../../models';
+import { Usuario, FormUsuarioAmigo, Mensagem } from '../../../models';
 import { AmigoService, UsuarioService } from '../../../services';
 import { Router } from '@angular/router';
+import { MensagemEnum } from 'src/app/topspin/constantes';
 
 @Component({
   selector: 'app-amigo',
@@ -16,8 +17,7 @@ export class AmigoComponent implements OnInit {
 
   usuario: Usuario
   listaDeAmigos: Usuario[]
-  mensagemTop: string
-  mensagemTipo: string
+  mensagem: Mensagem
   
   constructor(private amigoService: AmigoService,
               private usuarioService: UsuarioService,
@@ -30,13 +30,11 @@ export class AmigoComponent implements OnInit {
         (result) => {
           this.listaDeAmigos = result
           if (this.listaDeAmigos !== undefined && this.listaDeAmigos.length > 0) {
-            this.mensagemTipo = ''
-            this.mensagemTop = ''
+            this.mensagem = new Mensagem()
           }
         }
       )
-    this.mensagemTop = ''
-    this.mensagemTipo = ''
+      this.mensagem = new Mensagem()
   }
 
   retirarComoAmigo(u: Usuario) {
@@ -46,8 +44,7 @@ export class AmigoComponent implements OnInit {
         .subscribe(
           (result) => {
             this.retiraUsuarioDaLista(u.id)
-            this.mensagemTipo = 'S'
-            this.mensagemTop = 'Usuário retirado da lista de amigos com sucesso!!!'
+            this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário retirado da lista de amigos com sucesso!!!')
           }
         )
   }
@@ -62,8 +59,7 @@ export class AmigoComponent implements OnInit {
 
   isListaDeAmigosVazia(): boolean {
     if (this.listaDeAmigos === undefined || this.listaDeAmigos.length === 0) {
-      this.mensagemTipo = 'W'
-      this.mensagemTop = 'Nenhum amigo encontrado.'
+      this.mensagem = new Mensagem(MensagemEnum.W, 'Nenhum amigo encontrado.')
       return true
     }else{
       return false

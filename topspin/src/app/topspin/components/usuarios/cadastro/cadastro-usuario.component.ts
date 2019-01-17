@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { Usuario, ChaveValor } from '../../../models';
+import { Usuario, ChaveValor, Mensagem } from '../../../models';
 import { UsuarioService } from '../../../services';
-import { ESTADOS, NIVEIS, TIPOSCD } from '../../../constantes';
+import { ESTADOS, NIVEIS, TIPOSCD, MensagemEnum } from '../../../constantes';
 
 @Component({
   selector: 'app-usuario',
@@ -18,8 +18,7 @@ export class CadastroUsuarioComponent implements OnInit {
   estados: ChaveValor[]
   tipos: ChaveValor[]
   niveis: ChaveValor[] 
-  mensagemTop: string
-  mensagemTipo: string
+  mensagem: Mensagem
 
   constructor(private usuarioService: UsuarioService) { }
 
@@ -33,17 +32,14 @@ export class CadastroUsuarioComponent implements OnInit {
     this.estados = ESTADOS
     this.niveis = NIVEIS
     this.tipos = TIPOSCD
-    this.mensagemTop = ''
-    this.mensagemTipo = ''
+    this.mensagem = new Mensagem()
   }
 
   salvar() {
     this.usuarioService.altera(this.usuario)
         .subscribe(
           (result) => {
-            this.mensagemTipo = 'S'
-            this.mensagemTop = 'Usuário alterado com sucesso!!!'
-            console.log('chegou.......')
+            this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário alterado com sucesso!!!')
           }
         )
   }
