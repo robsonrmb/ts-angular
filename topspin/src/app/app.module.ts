@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +22,7 @@ import { HeadersComponent } from './topspin/components/headers/headers.component
 import { FootersComponent } from './topspin/components/footers/footers.component';
 import { externalURLProvider } from './topspin/constantes/externalUrlProvider';
 import { ExternalComponent } from './topspin/components/external/external.component';
+import { ApplicationErrorHandler } from './app.error-handler';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ExternalComponent } from './topspin/components/external/external.compon
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+    {provide: ErrorHandler, useClass: ApplicationErrorHandler},
     {
       provide: externalURLProvider,
       useValue: (route: ActivatedRouteSnapshot) => {
