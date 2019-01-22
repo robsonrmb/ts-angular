@@ -27,6 +27,7 @@ export class CadastroUsuarioComponent implements OnInit {
         .subscribe(
           (result) => {
             this.usuario = result
+            console.log(this.usuario)
           }
         )
     this.estados = ESTADOS
@@ -36,6 +37,7 @@ export class CadastroUsuarioComponent implements OnInit {
   }
 
   salvar() {
+    this.usuario.dataNascimento = this.converteData_ddMMyyyy_para_yyyyMMdd(this.usuario.dataNascimentoFormatada)
     this.usuarioService.altera(this.usuario)
         .subscribe(
           (result) => {
@@ -45,6 +47,25 @@ export class CadastroUsuarioComponent implements OnInit {
             this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao alterar usuário!!!')
           }
         )
+  }
+
+  formataData() {
+    let dt = this.usuario.dataNascimentoFormatada
+    if (dt != undefined) {
+      if (dt.length == 2) {
+        dt = dt + '/'
+      }else if (dt.length == 5) {
+        dt = dt + '/'
+      }
+    }
+    this.usuario.dataNascimentoFormatada = dt
+  }
+
+  private converteData_ddMMyyyy_para_yyyyMMdd(data: string): string {
+    let dataF = data.substring(6) + '-' +
+                data.substring(3,5) + '-' +
+                data.substring(0,2)
+    return dataF
   }
 
 }

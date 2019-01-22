@@ -61,10 +61,12 @@
                 <label form="dataNascimento">Data de nascimento</label>
                 <input  name="dataNascimento" 
                         id="dataNascimento" 
-                        [(ngModel)]="usuario.dataNascimento"
+                        [(ngModel)]="usuario.dataNascimentoFormatada"
                         #dataNascimento="ngModel"
                         class="form-control"
-                        required />
+                        maxlength="10"
+                        required 
+                        (keyup)="formataData()" />
               </div>  
             </div>
           </div>

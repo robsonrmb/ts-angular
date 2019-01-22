@@ -5,12 +5,14 @@ export class Usuario {
 		public nome?: string,
 		public apelido?: string,
 		public dataNascimento?: string,
+		public sx?: string,
 		public ondeJoga?: string,
 		public cidade?: string,
 		public estado?: string,
 		public tipo?: string,
 		public nivel?: string,
 		public email?: string,
-		public amigo?: boolean) {}
-		
+		public amigo?: boolean,
+		public dataNascimentoFormatada?: string) {}
+
 }
