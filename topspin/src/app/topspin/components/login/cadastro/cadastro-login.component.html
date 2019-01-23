@@ -61,6 +61,18 @@
                       placeholder="Digite sua senha" />
             </div>
             <div class="form-group">
+              <label form="sexo">Sexo</label><br />
+              <select name="sexo" 
+                      [(ngModel)]="formCadastroLoginModel.sexo" 
+                      #sexo="ngModel"
+                      class="form-control"
+                      required>
+
+                  <option selected value="">Selecione um sexo</option>
+                  <option *ngFor="let sexo of sexos" value="{{sexo.chave}}">{{sexo.valor}}</option>
+              </select>
+            </div>
+            <div class="form-group">
               <label form="estado">Estado</label><br />
               <select name="estado" 
                       [(ngModel)]="formCadastroLoginModel.estado" 

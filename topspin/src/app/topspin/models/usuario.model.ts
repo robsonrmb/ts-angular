@@ -5,7 +5,7 @@ export class Usuario {
 		public nome?: string,
 		public apelido?: string,
 		public dataNascimento?: string,
-		public sx?: string,
+		public sexo?: string,
 		public ondeJoga?: string,
 		public cidade?: string,
 		public estado?: string,

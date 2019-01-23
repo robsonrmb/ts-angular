@@ -5,6 +5,7 @@ export class FormCadastroLogin {
 		public nome?: string,
 		public email?: string,
 		public senha?: string,
-		public estado?: string) {}
+		public estado?: string,
+		public sexo?: string) {}
 		
 }

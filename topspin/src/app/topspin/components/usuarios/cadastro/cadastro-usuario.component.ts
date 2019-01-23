@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 
 import { Usuario, ChaveValor, Mensagem } from '../../../models';
 import { UsuarioService } from '../../../services';
-import { ESTADOS, NIVEIS, TIPOSCD, MensagemEnum } from '../../../constantes';
+import { ESTADOS, NIVEIS, TIPOSCD, MensagemEnum, SEXOS } from '../../../constantes';
 
 @Component({
   selector: 'app-usuario',
@@ -18,6 +18,7 @@ export class CadastroUsuarioComponent implements OnInit {
   estados: ChaveValor[]
   tipos: ChaveValor[]
   niveis: ChaveValor[] 
+  sexos: ChaveValor[]
   mensagem: Mensagem
 
   constructor(private usuarioService: UsuarioService) { }
@@ -27,12 +28,12 @@ export class CadastroUsuarioComponent implements OnInit {
         .subscribe(
           (result) => {
             this.usuario = result
-            console.log(this.usuario)
           }
         )
     this.estados = ESTADOS
     this.niveis = NIVEIS
     this.tipos = TIPOSCD
+    this.sexos = SEXOS
     this.mensagem = new Mensagem()
   }
 

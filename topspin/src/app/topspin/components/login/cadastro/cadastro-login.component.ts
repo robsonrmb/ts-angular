@@ -4,7 +4,7 @@ import { NgForm } from '@angular/forms';
 
 import { FormCadastroLogin, ChaveValor } from '../../../models';
 import { LoginService, LoginMockService } from '../../../services';
-import { ESTADOS } from '../../../constantes';
+import { ESTADOS, SEXOS } from '../../../constantes';
 
 @Component({
   selector: 'app-cadastro-login',
@@ -17,6 +17,7 @@ export class CadastroLoginComponent implements OnInit {
 
   mensagemErro: string
   estados: ChaveValor[]
+  sexos: ChaveValor[]
   formCadastroLoginModel: FormCadastroLogin
 
   constructor(private loginService: LoginService,
@@ -25,6 +26,7 @@ export class CadastroLoginComponent implements OnInit {
   ngOnInit() {
     this.formCadastroLoginModel = new FormCadastroLogin()
     this.estados = ESTADOS
+    this.sexos = SEXOS
   }
 
   isMensagem() {
