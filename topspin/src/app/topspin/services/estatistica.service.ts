@@ -15,13 +15,13 @@ export class EstatisticaService {
               private usuarioService: UsuarioService) { }
 
   buscaEstatisticaDeVitoriasEDerrotas(idUsuario: string) {
-    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/usuario/${idUsuario}/vitoriasederrotas`)
+    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/vitoriasederrotas/usuario/${idUsuario}`)
                     .map(response => response.json())
                     .catch(error => throwError(error));
   }
 
   buscaEstatisticaDeTiebreaks(idUsuario: string) {
-    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/usuario/${idUsuario}/tiebreaks`)
+    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/tiebreaks/usuario/${idUsuario}`)
                     .map(response => response.json())
                     .catch(error => throwError(error));
   }
