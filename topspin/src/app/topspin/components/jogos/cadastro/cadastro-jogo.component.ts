@@ -35,6 +35,7 @@ export class CadastroJogoComponent implements OnInit {
 
   salvar() {
     let msg = this.validaFormulario()
+    this.jogo.data = this.converteData_ddMMyyyy_para_yyyyMMdd(this.jogo.dataJogoFormatada)
     if (msg == "") {
       this.jogo.idUsuario = this.usuarioService.getUsuario().id
       this.jogoService.inclui(this.jogo)
@@ -76,6 +77,25 @@ export class CadastroJogoComponent implements OnInit {
       mensagem = "Quantidade de tiebreaks incorreto para o placar do jogo."
     }
     return mensagem
+  }
+
+  formataData() {
+    let dt = this.jogo.dataJogoFormatada
+    if (dt != undefined) {
+      if (dt.length == 2) {
+        dt = dt + '/'
+      }else if (dt.length == 5) {
+        dt = dt + '/'
+      }
+    }
+    this.jogo.dataJogoFormatada = dt
+  }
+
+  private converteData_ddMMyyyy_para_yyyyMMdd(data: string): string {
+    let dataF = data.substring(6) + '-' +
+                data.substring(3,5) + '-' +
+                data.substring(0,2)
+    return dataF
   }
 
 }

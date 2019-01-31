@@ -26,11 +26,10 @@ export class PesquisaAvaliacaoComponent implements OnInit {
   ngOnInit() {
     let aval: Avaliacao = new Avaliacao()
     aval.idUsuario = this.usuarioService.getUsuario().id
-    aval.status = 'P'
     this.mensagem = new Mensagem()
 
     this.avaliacaoService
-      .listaAvaliacoesRecebidasPorUsuarioEStatus(aval)
+      .listaAvaliacoesRecebidasPendentesPorUsuario(aval)
       .subscribe(
         (result) => {
           this.listaDeAvaliacoes = result

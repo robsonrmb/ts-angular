@@ -20,7 +20,7 @@ export class JogoService {
   }
 
   listaUltimosJogosPorUsuario(id: string, qtd: number): Observable<UltimosJogos> {
-    return this.http.get(`${RECURSO_URL_JOGOS}/usuario/${id}/ultimosJogos/${qtd}`)
+    return this.http.get(`${RECURSO_URL_JOGOS}/ultimos-jogos?usuario=${id}&&qtd=${qtd}`)
                     .map(response => response.json())
                     .catch(error => throwError(error));
   }

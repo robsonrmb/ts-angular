@@ -38,13 +38,19 @@ export class AvaliacaoService {
   }
 
   listaAvaliacoesRecebidasPorUsuarioEStatus(avaliacao: Avaliacao) {
-    return this.http.get(`${RECURSO_URL_AVALIACOES}/recebidas/${avaliacao.idUsuario}/status/${avaliacao.status}`)
+    return this.http.get(`${RECURSO_URL_AVALIACOES}/recebidas?usuario=${avaliacao.idUsuario}&&status=${avaliacao.status}`)
+                    .map(response => response.json())
+                    .catch(error => throwError(error));
+  }
+
+  listaAvaliacoesRecebidasPendentesPorUsuario(avaliacao: Avaliacao) {
+    return this.http.get(`${RECURSO_URL_AVALIACOES}/recebidas/pendentes?usuario=${avaliacao.idUsuario}`)
                     .map(response => response.json())
                     .catch(error => throwError(error));
   }
 
   countAvaliacoesPendentes(idUsuario: string) {
-    return this.http.get(`${RECURSO_URL_AVALIACOES}/recebidas/${idUsuario}/countPendentes`)
+    return this.http.get(`${RECURSO_URL_AVALIACOES}/recebidas/pendentes/qtd/${idUsuario}`)
                     .map(response => response.json())
                     .catch(error => throwError(error));
   }

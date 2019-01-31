@@ -9,6 +9,7 @@ export class Jogo {
 		public resultado?: string,
 		public placar?: string,
 		public qtdTieVencidos?: number,
-		public qtdTiePerdidos?: number) {}
+		public qtdTiePerdidos?: number,
+		public dataJogoFormatada?: string) {}
 		
 }

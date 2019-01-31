@@ -25,10 +25,12 @@
               <label form="data">Data do jogo</label>
               <input  name="data" 
                       id="data" 
-                      [(ngModel)]="jogo.data"
+                      [(ngModel)]="jogo.dataJogoFormatada"
                       #data="ngModel"
                       class="form-control" 
-                      required /> 
+                      maxlength="10"
+                      required 
+                      (keyup)="formataData()" /> 
             </div>
           </div>
         </div>
