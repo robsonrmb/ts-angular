@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { LoginService, UsuarioService, EstatisticaService, JogoService } from '../../services';
-import { Usuario, EstatisticaValor, UltimosJogos } from '../../models';
+import { Usuario, EstatisticaValor, UltimosJogos, ExceptionTS } from '../../models';
 
 declare var google: any;
 
@@ -12,6 +12,16 @@ declare var google: any;
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+  private mensagemErro: string
+  private verEstatisticas: boolean
+
+  private qtdAvaliacoesAceitas: number
+  private qtdAvaliacoesRecusadas: number
+  private qtdConvitesRecebidosAceitos: number
+  private qtdConvitesRecebidosRecusados: number
+  private qtdConvitesEnviados: number
+  private qtdJogosRealizados: number
 
   private ultimosJogos: string
   private usuario: Usuario
@@ -60,8 +70,11 @@ export class DashboardComponent implements OnInit {
     this.logado2 = this.loginService.isUsuarioLogado()
     this.usuario = this.usuarioService.getUsuario()
 
-    this.carregaEstatisticasGerais();
-    this.carregaEstatisticasDeAvaliacao();
+    this.visualizaEstatisticas()
+    this.buscaQtdEstatisticas()
+    this.buscaQtdEstatisticas()
+    this.carregaEstatisticasGerais()
+    this.carregaEstatisticasDeAvaliacao()
   }
 
   //MÉTODOS PARA EXIBIÇÃO DOS GRÁFICOS
@@ -146,7 +159,101 @@ export class DashboardComponent implements OnInit {
     }   
   }
 
-  carregaEstatisticasGerais() {
+  private visualizaEstatisticas() {
+    this.estatisticaService
+      .buscaQtdEstatisticasAceitas(this.usuarioService.getUsuario().id)
+      .subscribe(
+        (result) => {
+          this.visualizaEstatisticas = result
+        },
+        (error: ExceptionTS) => {
+          this.verEstatisticas = false;
+          let excecao = JSON.parse(error._body)
+          this.mensagemErro = excecao.message
+          this.traceDeveloper(true, error, excecao)
+        }
+      )
+  }
+  
+  private traceDeveloper(apenasInfo: boolean, error: ExceptionTS, excecao: any) {
+    console.log("LOG FOR DEVELOPER\n")
+    if (!apenasInfo) {
+      console.log("Código de erro: ", excecao.status)
+      console.log("URL: ", error.url)
+    }
+    console.log(excecao.trace)
+  }
+
+  buscaQtdEstatisticas() {
+    this.buscaQtdAvaliacoesAceitas()
+    this.buscaQtdAvaliacoesRecusadas()
+    this.buscaQtdConvitesRecebidosAceitos()
+    this.buscaQtdConvitesRecebidosRecusados()
+    this.buscaQtdConvitesEnviados()
+    this.buscaQtdJogosRealizados()
+  }
+
+  private buscaQtdAvaliacoesAceitas() {
+    this.estatisticaService
+      .buscaQtdAvaliacoesAceitas(this.usuarioService.getUsuario().id)
+      .subscribe(
+        (result) => {
+          this.qtdAvaliacoesAceitas = result.valor1
+        }
+      )
+  }
+
+  private buscaQtdAvaliacoesRecusadas() {
+    this.estatisticaService
+      .buscaQtdAvaliacoesRecusadas(this.usuarioService.getUsuario().id)
+      .subscribe(
+        (result) => {
+          this.qtdAvaliacoesRecusadas = result.valor1
+        }
+      )
+  }
+
+  private buscaQtdConvitesRecebidosAceitos() {
+    this.estatisticaService
+      .buscaQtdConvitesRecebidosAceitos(this.usuarioService.getUsuario().id)
+      .subscribe(
+        (result) => {
+          this.qtdConvitesRecebidosAceitos = result.valor1
+        }
+      )
+  }
+
+  private buscaQtdConvitesRecebidosRecusados() {
+    this.estatisticaService
+      .buscaQtdConvitesRecebidosRecusados(this.usuarioService.getUsuario().id)
+      .subscribe(
+        (result) => {
+          this.qtdConvitesRecebidosRecusados = result.valor1
+        }
+      )
+  }
+
+  private buscaQtdConvitesEnviados() {
+    this.estatisticaService
+      .buscaQtdConvitesEnviados(this.usuarioService.getUsuario().id)
+      .subscribe(
+        (result) => {
+          this.qtdConvitesEnviados = result.valor1
+        }
+      )
+  }
+
+  private buscaQtdJogosRealizados() {
+    this.estatisticaService
+      .buscaQtdJogosRealizados(this.usuarioService.getUsuario().id)
+      .subscribe(
+        (result) => {
+          this.qtdJogosRealizados = result.valor1
+        }
+      )
+  }
+
+  private carregaEstatisticasGerais() {
     this.ultimosJogos = "";
     this.jogoService
       .listaUltimosJogosPorUsuario(this.usuarioService.getUsuario().id, 5)
@@ -183,7 +290,7 @@ export class DashboardComponent implements OnInit {
       )
   }
 
-  carregaEstatisticasDeAvaliacao() {
+  private carregaEstatisticasDeAvaliacao() {
     this.eSaque = new EstatisticaValor();
     this.estatisticaService
       .buscaEstatisticaPorTipo(this.usuarioService.getUsuario().id, "SAQUE")
@@ -195,7 +302,7 @@ export class DashboardComponent implements OnInit {
           this.arSaque[2] = ['Bom', this.eSaque.valor3]
           this.arSaque[3] = ['Ótimo', this.eSaque.valor4]
           
-          this.init(this.arSaque, 'pie_chart_saque', false, 'SAQUE', 0, 'barra')
+          this.init(this.arSaque, 'pie_chart_saque', false, 'SAQUE', 0, 'pizza')
         }
       )
     
@@ -210,7 +317,7 @@ export class DashboardComponent implements OnInit {
           this.arForehand[2] = ['Bom', this.eForehand.valor3]
           this.arForehand[3] = ['Ótimo', this.eForehand.valor4]
           
-          this.init(this.arForehand, 'pie_chart_forehand', false, 'FOREHAND', 0, 'coluna')
+          this.init(this.arForehand, 'pie_chart_forehand', false, 'FOREHAND', 0, 'pizza')
         }
       )
 
@@ -225,7 +332,7 @@ export class DashboardComponent implements OnInit {
           this.arBackhand[2] = ['Bom', this.eBackhand.valor3]
           this.arBackhand[3] = ['Ótimo', this.eBackhand.valor4]
           
-          this.init(this.arBackhand, 'pie_chart_backhand', false, 'BACKHAND', 0, 'coluna')
+          this.init(this.arBackhand, 'pie_chart_backhand', false, 'BACKHAND', 0, 'pizza')
         }
       )
 
@@ -240,7 +347,7 @@ export class DashboardComponent implements OnInit {
           this.arVoleio[2] = ['Bom', this.eVoleio.valor3]
           this.arVoleio[3] = ['Ótimo', this.eVoleio.valor4]
           
-          this.init(this.arVoleio, 'pie_chart_voleio', false, 'VOLEIO', 0, 'barra')
+          this.init(this.arVoleio, 'pie_chart_voleio', false, 'VOLEIO', 0, 'pizza')
         }
       )
       
@@ -255,7 +362,7 @@ export class DashboardComponent implements OnInit {
           this.arSmash[2] = ['Bom', this.eSmash.valor3]
           this.arSmash[3] = ['Ótimo', this.eSmash.valor4]
           
-          this.init(this.arSmash, 'pie_chart_smash', false, 'SMASH', 0, 'linha')
+          this.init(this.arSmash, 'pie_chart_smash', false, 'SMASH', 0, 'pizza')
         }
       )
 
@@ -270,7 +377,7 @@ export class DashboardComponent implements OnInit {
           this.arOfensivo[2] = ['Bom', this.eOfensivo.valor3]
           this.arOfensivo[3] = ['Ótimo', this.eOfensivo.valor4]
           
-          this.init(this.arOfensivo, 'pie_chart_ofensivo', false, 'OFENSIVO', 0, 'barra')
+          this.init(this.arOfensivo, 'pie_chart_ofensivo', false, 'OFENSIVO', 0, 'pizza')
         }
       )
 
@@ -285,7 +392,7 @@ export class DashboardComponent implements OnInit {
           this.arDefensivo[2] = ['Bom', this.eDefensivo.valor3]
           this.arDefensivo[3] = ['Ótimo', this.eDefensivo.valor4]
           
-          this.init(this.arDefensivo, 'pie_chart_defensivo', false, 'DEFENSIVO', 0, 'coluna')
+          this.init(this.arDefensivo, 'pie_chart_defensivo', false, 'DEFENSIVO', 0, 'pizza')
         }
       )
 
@@ -300,7 +407,7 @@ export class DashboardComponent implements OnInit {
           this.arTatico[2] = ['Bom', this.eTatico.valor3]
           this.arTatico[3] = ['Ótimo', this.eTatico.valor4]
           
-          this.init(this.arTatico, 'pie_chart_tatico', false, 'TÁTICO', 0, 'coluna')
+          this.init(this.arTatico, 'pie_chart_tatico', false, 'TÁTICO', 0, 'pizza')
         }
       )
 
@@ -315,7 +422,7 @@ export class DashboardComponent implements OnInit {
           this.arCompetitivo[2] = ['Bom', this.eCompetitivo.valor3]
           this.arCompetitivo[3] = ['Ótimo', this.eCompetitivo.valor4]
           
-          this.init(this.arCompetitivo, 'pie_chart_competitivo', false, 'COMPETITIVO', 0, 'barra')
+          this.init(this.arCompetitivo, 'pie_chart_competitivo', false, 'COMPETITIVO', 0, 'pizza')
         }
       )
 
@@ -330,7 +437,7 @@ export class DashboardComponent implements OnInit {
           this.arPreparo[2] = ['Bom', this.ePreparo.valor3]
           this.arPreparo[3] = ['Ótimo', this.ePreparo.valor4]
           
-          this.init(this.arPreparo, 'pie_chart_preparo', false, 'PREPARO FÍSICO', 0, 'linha')
+          this.init(this.arPreparo, 'pie_chart_preparo', false, 'PREPARO FÍSICO', 0, 'pizza')
         }
       )
   }

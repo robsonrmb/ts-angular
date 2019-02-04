@@ -74,9 +74,7 @@ export class EntradaLoginComponent implements OnInit {
       (error: ExceptionTS) => {
         let excecao = JSON.parse(error._body)
         this.mensagemErro = excecao.message
-        console.log("LOG FOR DEVELOPER\n")
-        console.log("Código de erro: ", excecao.status)
-        console.log(excecao.trace)
+        this.traceDeveloper(error, excecao)
       }
     ) 
   }
@@ -116,6 +114,13 @@ export class EntradaLoginComponent implements OnInit {
   redirecionaParaSiteExterno() {
     this.router.navigate(['/externalRedirect', {externalUrl: 'http://www.google.com'}])
     //https://app.correiosnet.int/cas/login?service=http://localhost:4200/dashboard
+  }
+
+  private traceDeveloper(error: ExceptionTS, excecao: any) {
+    console.log("LOG FOR DEVELOPER\n")
+    console.log("Código de erro: ", excecao.status)
+    console.log("URL: ", error.url)
+    console.log(excecao.trace)
   }
 
 }

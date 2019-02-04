@@ -14,6 +14,12 @@ export class EstatisticaService {
   constructor(private http: Http,
               private usuarioService: UsuarioService) { }
 
+  buscaQtdEstatisticasAceitas(idUsuario: string) {
+    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/qtd-avaliacoes-aceitas/usuario/${idUsuario}`)
+                    .map(response => response.json())
+                    .catch(error => throwError(error));
+  }
+  
   buscaEstatisticaDeVitoriasEDerrotas(idUsuario: string) {
     return this.http.get(`${RECURSO_URL_ESTATISTICAS}/vitoriasederrotas/usuario/${idUsuario}`)
                     .map(response => response.json())
@@ -31,4 +37,41 @@ export class EstatisticaService {
                     .map(response => response.json())
                     .catch(error => throwError(error));
   }
+
+  buscaQtdAvaliacoesAceitas(idUsuario: string) {
+    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/qtd-avaliacoes-aceitas/usuario/${idUsuario}`)
+                    .map(response => response.json())
+                    .catch(error => throwError(error));
+  }
+
+  buscaQtdAvaliacoesRecusadas(idUsuario: string) {
+    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/qtd-avaliacoes-recusadas/usuario/${idUsuario}`)
+                    .map(response => response.json())
+                    .catch(error => throwError(error));
+  }
+
+  buscaQtdConvitesRecebidosAceitos(idUsuario: string) {
+    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/qtd-convites-recebidos-aceitos/usuario/${idUsuario}`)
+                    .map(response => response.json())
+                    .catch(error => throwError(error));
+  }
+
+  buscaQtdConvitesRecebidosRecusados(idUsuario: string) {
+    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/qtd-convites-recebidos-recusados/usuario/${idUsuario}`)
+                    .map(response => response.json())
+                    .catch(error => throwError(error));
+  }
+
+  buscaQtdConvitesEnviados(idUsuario: string) {
+    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/qtd-convites-enviados/usuario/${idUsuario}`)
+                    .map(response => response.json())
+                    .catch(error => throwError(error));
+  }
+
+  buscaQtdJogosRealizados(idUsuario: string) {
+    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/qtd-jogos-realizados/usuario/${idUsuario}`)
+                    .map(response => response.json())
+                    .catch(error => throwError(error));
+  }
+
 }

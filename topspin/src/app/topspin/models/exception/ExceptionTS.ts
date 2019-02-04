@@ -4,7 +4,7 @@ export class ExceptionTS {
 		public _body?: string,
 		public status?: string,
 		public ok?: string,
-		public statsText?: string,
+		public statusText?: string,
 		public headers?: string,
 		public type?: string,
 		public url?: string) {}

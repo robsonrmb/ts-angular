@@ -34,7 +34,45 @@
         <p>==================================================</p>
         Gráfico: 
         -->
-        
+        <div class="row">
+          <div class="col-2">
+              <div class="card border-info">
+                <div class="card-header text-center">Avaliações aceitas</div>
+                <div class="card-body text-center bg-info"><h3>{{qtdAvaliacoesAceitas}}</h3></div>
+              </div>
+          </div>
+          <div class="col-2">
+            <div class="card border-warning">
+              <div class="card-header text-center">Avaliações recusadas</div>
+              <div class="card-body text-center bg-warning"><h3>{{qtdAvaliacoesRecusadas}}</h3></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="card border-info">
+              <div class="card-header text-center">Convites receb. aceitos</div>
+              <div class="card-body text-center bg-info"><h3>{{qtdConvitesRecebidosAceitos}}</h3></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="card border-warning">
+              <div class="card-header text-center">Convites receb. recusados</div>
+              <div class="card-body text-center bg-warning"><h3>{{qtdConvitesRecebidosRecusados}}</h3></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="card border-info">
+              <div class="card-header text-center">Convites enviados</div>
+              <div class="card-body text-center bg-info"><h3>{{qtdConvitesEnviados}}</h3></div>
+            </div>
+          </div>
+          <div class="col-2">
+            <div class="card border-info">
+              <div class="card-header text-center">Jogos realizados</div>
+              <div class="card-body text-center bg-info"><h3>{{qtdJogosRealizados}}</h3></div>
+            </div>
+          </div>
+        </div>
+        <p></p>
         <div class="row">
           <div class="col-4">
             <div class="card">
@@ -92,73 +130,87 @@
           </div>
         </div>
         <br />
-        <div class="row">
+        <div class="row" *ngIf="visualizaEstatisticas">
           <div class="col-12">
-            <div class="card">
-              <div class="card-header"><!-- style="background-color: #7791BD"-->
-                Estatísticas Técnicas
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header"><!-- style="background-color: #7791BD"-->
+                    Estatísticas Técnicas
+                  </div>
+                  <div class="card-body">
+                    <table>
+                      <tr>
+                        <td><div id="pie_chart_saque"></div></td>
+                        <td><div id="pie_chart_forehand"></div></td>
+                        <td><div id="pie_chart_backhand"></div></td>
+                      </tr>
+                      <tr>
+                        <td><div id="pie_chart_voleio"></div></td>
+                        <td><div id="pie_chart_smash"></div></td>
+                        <td></td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="card-footer bg-light">
+                    <table class="col-12">
+                      <tr>
+                        <td><a (click)="exibirGraficosTecnicos('pizza')" href="javascript: return false;">Pizza</a></td>
+                        <td><a (click)="exibirGraficosTecnicos('barra')" href="javascript: return false;">Barra</a></td>
+                        <td><a (click)="exibirGraficosTecnicos('coluna')" href="javascript: return false;">Coluna</a></td>
+                        <td><a (click)="exibirGraficosTecnicos('linha')" href="javascript: return false;">Linha</a></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
               </div>
-              <div class="card-body">
-                <table>
-                  <tr>
-                    <td><div id="pie_chart_saque"></div></td>
-                    <td><div id="pie_chart_forehand"></div></td>
-                    <td><div id="pie_chart_backhand"></div></td>
-                  </tr>
-                  <tr>
-                    <td><div id="pie_chart_voleio"></div></td>
-                    <td><div id="pie_chart_smash"></div></td>
-                    <td></td>
-                  </tr>
-                </table>
-              </div>
-              <div class="card-footer bg-light">
-                <table class="col-12">
-                  <tr>
-                    <td><a (click)="exibirGraficosTecnicos('pizza')" href="javascript: return false;">Pizza</a></td>
-                    <td><a (click)="exibirGraficosTecnicos('barra')" href="javascript: return false;">Barra</a></td>
-                    <td><a (click)="exibirGraficosTecnicos('coluna')" href="javascript: return false;">Coluna</a></td>
-                    <td><a (click)="exibirGraficosTecnicos('linha')" href="javascript: return false;">Linha</a></td>
-                  </tr>
-                </table>
+            </div>
+            <br />
+            <div class="row">
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header"><!-- style="background-color: #6E85AD"-->
+                    Estatísticas Táticas
+                  </div>
+                  <div class="card-body">
+                    <table>
+                      <tr>
+                        <td><div id="pie_chart_ofensivo"></div></td>
+                        <td><div id="pie_chart_defensivo"></div></td>
+                        <td><div id="pie_chart_tatico"></div></td>
+                      </tr>
+                      <tr>
+                        <td><div id="pie_chart_competitivo"></div></td>
+                        <td><div id="pie_chart_preparo"></div></td>
+                        <td></td>
+                      </tr>
+                    </table>
+                  </div>
+                  <div class="card-footer bg-light">
+                    <table class="col-12">
+                      <tr>
+                        <td><a (click)="exibirGraficosTaticos('pizza')" href="javascript: return false;">Pizza</a></td>
+                        <td><a (click)="exibirGraficosTaticos('barra')" href="javascript: return false;">Barra</a></td>
+                        <td><a (click)="exibirGraficosTaticos('coluna')" href="javascript: return false;">Coluna</a></td>
+                        <td><a (click)="exibirGraficosTaticos('linha')" href="javascript: return false;">Linha</a></td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <br />
-        <div class="row">
+        <div class="row" *ngIf="!visualizaEstatisticas">
           <div class="col-12">
-            <div class="card">
-              <div class="card-header"><!-- style="background-color: #6E85AD"-->
-                Estatísticas Táticas
+              <div class="card">
+                <div class="card-body bg-warning">
+                  <h5>{{mensagemErro}}</h5>
+                </div>
               </div>
-              <div class="card-body">
-                <table>
-                  <tr>
-                    <td><div id="pie_chart_ofensivo"></div></td>
-                    <td><div id="pie_chart_defensivo"></div></td>
-                    <td><div id="pie_chart_tatico"></div></td>
-                  </tr>
-                  <tr>
-                    <td><div id="pie_chart_competitivo"></div></td>
-                    <td><div id="pie_chart_preparo"></div></td>
-                    <td></td>
-                  </tr>
-                </table>
-              </div>
-              <div class="card-footer bg-light">
-                <table class="col-12">
-                  <tr>
-                    <td><a (click)="exibirGraficosTaticos('pizza')" href="javascript: return false;">Pizza</a></td>
-                    <td><a (click)="exibirGraficosTaticos('barra')" href="javascript: return false;">Barra</a></td>
-                    <td><a (click)="exibirGraficosTaticos('coluna')" href="javascript: return false;">Coluna</a></td>
-                    <td><a (click)="exibirGraficosTaticos('linha')" href="javascript: return false;">Linha</a></td>
-                  </tr>
-                </table>
-              </div>
-            </div>
           </div>
         </div>
+
         <!--
         <p>
           Estatística de vitórias e derrotas: {{this.eVitoriaDerrota.valor1}} - {{this.eVitoriaDerrota.valor2}} <br />
@@ -187,7 +239,7 @@
   <footer class="sticky-footer">
     <div class="container">
       <div class="text-center">
-        <small>Copyright topSpin 2019</small>
+        <small>Copyright TopSpin 2019</small>
       </div>
     </div>
   </footer>
