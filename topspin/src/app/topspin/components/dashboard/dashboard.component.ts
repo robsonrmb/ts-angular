@@ -161,10 +161,10 @@ export class DashboardComponent implements OnInit {
 
   private visualizaEstatisticas() {
     this.estatisticaService
-      .buscaQtdEstatisticasAceitas(this.usuarioService.getUsuario().id)
+      .visualizaEstatisticas(this.usuarioService.getUsuario().id)
       .subscribe(
         (result) => {
-          this.visualizaEstatisticas = result
+          this.verEstatisticas = result
         },
         (error: ExceptionTS) => {
           this.verEstatisticas = false;

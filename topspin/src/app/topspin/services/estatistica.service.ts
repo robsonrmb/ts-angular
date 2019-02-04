@@ -14,12 +14,6 @@ export class EstatisticaService {
   constructor(private http: Http,
               private usuarioService: UsuarioService) { }
 
-  buscaQtdEstatisticasAceitas(idUsuario: string) {
-    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/qtd-avaliacoes-aceitas/usuario/${idUsuario}`)
-                    .map(response => response.json())
-                    .catch(error => throwError(error));
-  }
-  
   buscaEstatisticaDeVitoriasEDerrotas(idUsuario: string) {
     return this.http.get(`${RECURSO_URL_ESTATISTICAS}/vitoriasederrotas/usuario/${idUsuario}`)
                     .map(response => response.json())
@@ -32,6 +26,12 @@ export class EstatisticaService {
                     .catch(error => throwError(error));
   }
 
+  visualizaEstatisticas(idUsuario: string) {
+    return this.http.get(`${RECURSO_URL_ESTATISTICAS}/visualiza-estatisticas/usuario/${idUsuario}`)
+                    .map(response => response.json())
+                    .catch(error => throwError(error));
+  }
+  
   buscaEstatisticaPorTipo(idUsuario: string, tipo: string) {
     return this.http.get(`${RECURSO_URL_ESTATISTICAS}/usuario/${idUsuario}/tipoEstatistica/${tipo}`)
                     .map(response => response.json())
