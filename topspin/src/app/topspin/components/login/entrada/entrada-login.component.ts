@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 import { LoginService, LoginMockService, ConviteService, AvaliacaoService } from '../../../services';
-import { Login, Usuario } from '../../../models';
+import { Login, Usuario, ExceptionTS } from '../../../models';
 import { UsuarioService } from 'src/app/topspin/services/usuario.service';
 
 @Component({
@@ -70,6 +70,13 @@ export class EntradaLoginComponent implements OnInit {
         }else{
           this.mensagemErro = 'Dados incorretos!!!'
         }
+      },
+      (error: ExceptionTS) => {
+        let excecao = JSON.parse(error._body)
+        this.mensagemErro = excecao.message
+        console.log("LOG FOR DEVELOPER\n")
+        console.log("Código de erro: ", excecao.status)
+        console.log(excecao.trace)
       }
     ) 
   }
