@@ -104,25 +104,29 @@
                 <table style="height: 130px; border: 1px; border-color: #fff;">
                   <tr>
                     <td style="width: 60px;" *ngIf="ultimosJogos.length >= 1">
-                      <i *ngIf="resultadoUltimosJogos(0)" class="fa fa-check-square-o"></i>
-                      <i *ngIf="!resultadoUltimosJogos(0)" class="fa fa-remove"></i>
+                      <img *ngIf="resultadoUltimosJogos(0)" src="../../../../assets/images/vitoria.png" width="50px" height="47px" />
+                      <img *ngIf="!resultadoUltimosJogos(0)" src="../../../../assets/images/derrota.png" width="50px" height="47px" />
                     </td>
                     <td style="width: 60px;" *ngIf="ultimosJogos.length >= 2">
-                        <i *ngIf="resultadoUltimosJogos(1)" class="fa fa-check-square-o"></i>
-                        <i *ngIf="!resultadoUltimosJogos(1)" class="fa fa-remove"></i>
+                      <img *ngIf="resultadoUltimosJogos(1)" src="../../../../assets/images/vitoria.png" width="50px" height="47px" />
+                      <img *ngIf="!resultadoUltimosJogos(1)" src="../../../../assets/images/derrota.png" width="50px" height="47px" />
                     </td>
                     <td style="width: 60px;" *ngIf="ultimosJogos.length >= 3">
-                        <i *ngIf="resultadoUltimosJogos(2)" class="fa fa-check-square-o"></i>
-                        <i *ngIf="!resultadoUltimosJogos(2)" class="fa fa-remove"></i>
+                      <img *ngIf="resultadoUltimosJogos(2)" src="../../../../assets/images/vitoria.png" width="50px" height="47px" />
+                      <img *ngIf="!resultadoUltimosJogos(2)" src="../../../../assets/images/derrota.png" width="50px" height="47px" />
                     </td>
                     <td style="width: 60px;" *ngIf="ultimosJogos.length >= 4">
-                        <i *ngIf="resultadoUltimosJogos(3)" class="fa fa-check-square-o"></i>
-                        <i *ngIf="!resultadoUltimosJogos(3)" class="fa fa-remove"></i>
+                      <img *ngIf="resultadoUltimosJogos(3)" src="../../../../assets/images/vitoria.png" width="50px" height="47px" />
+                      <img *ngIf="!resultadoUltimosJogos(3)" src="../../../../assets/images/derrota.png" width="50px" height="47px" />
                     </td>
                     <td style="width: 60px;" *ngIf="ultimosJogos.length >= 5">
-                        <i *ngIf="resultadoUltimosJogos(4)" class="fa fa-check-square-o"></i>
-                        <i *ngIf="!resultadoUltimosJogos(4)" class="fa fa-remove"></i>
+                      <img *ngIf="resultadoUltimosJogos(4)" src="../../../../assets/images/vitoria.png" width="50px" height="47px" />
+                      <img *ngIf="!resultadoUltimosJogos(4)" src="../../../../assets/images/derrota.png" width="50px" height="47px" />
                     </td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">Último Jogo</td>
+                    <td colspan="4"><i class="fa fa-reply"></i></td>
                   </tr>
                 </table>       
               </div>
