@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeadersComponent } from './headers.component';
+import { AvaliacaoService } from '../../services';
 
 @NgModule({
   declarations: [
@@ -11,6 +12,9 @@ import { HeadersComponent } from './headers.component';
   ],
   exports: [
     HeadersComponent
+  ],
+  providers: [
+    AvaliacaoService
   ]
 })
 export class HeadersModule { }

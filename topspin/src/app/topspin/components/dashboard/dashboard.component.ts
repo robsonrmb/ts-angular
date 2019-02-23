@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginService, UsuarioService, EstatisticaService, JogoService } from '../../services';
-import { Usuario, EstatisticaValor, UltimosJogos, ExceptionTS } from '../../models';
+import { LoginService, UsuarioService, EstatisticaService, JogoService, AvaliacaoService } from '../../services';
+import { Usuario, EstatisticaValor, UltimosJogos, ExceptionTS, Mensagem } from '../../models';
+import { MensagemEnum } from '../../constantes';
 
 declare var google: any;
 
@@ -14,6 +15,8 @@ declare var google: any;
 export class DashboardComponent implements OnInit {
 
   private mensagemErro: string
+  private mensagemAvalPendentes: Mensagem
+  private mensagemConvPendentes: Mensagem
   private verEstatisticas: boolean
 
   private qtdAvaliacoesAceitas: number
@@ -63,6 +66,7 @@ export class DashboardComponent implements OnInit {
               private usuarioService: UsuarioService,
               private estatisticaService: EstatisticaService,
               private jogoService: JogoService,
+              private avaliacaoService: AvaliacaoService,
               private router: Router) { }
 
   ngOnInit() {
@@ -75,6 +79,9 @@ export class DashboardComponent implements OnInit {
     this.buscaQtdEstatisticas()
     this.carregaEstatisticasGerais()
     this.carregaEstatisticasDeAvaliacao()
+
+    this.carregaMensagemDeAvaliacoesPendentes()
+    this.carregaMensagemDeConvitesPendentes()
   }
 
   //MÉTODOS PARA EXIBIÇÃO DOS GRÁFICOS
@@ -157,6 +164,20 @@ export class DashboardComponent implements OnInit {
         };
       }
     }   
+  }
+
+  private carregaMensagemDeAvaliacoesPendentes() {
+    if (this.avaliacaoService.isAvaliacaoPendente()) {
+      let qtd = this.avaliacaoService.qtdAvaliacoesPendentes()
+      this.mensagemAvalPendentes = new Mensagem(MensagemEnum.W, `Clique para visualizar as avaliações pendentes: ${qtd}.`)
+    }
+  }
+
+  private carregaMensagemDeConvitesPendentes() {
+    if (this.avaliacaoService.isConvitePendente()) {
+      let qtd = this.avaliacaoService.qtdConvitesPendentes()
+      this.mensagemConvPendentes = new Mensagem(MensagemEnum.W, `Clique para visualizar os convites pendentes: ${qtd}.`)
+    }
   }
 
   private visualizaEstatisticas() {

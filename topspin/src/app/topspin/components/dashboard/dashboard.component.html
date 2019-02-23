@@ -9,6 +9,33 @@
         Dashboard
       </li>
     </ol>
+
+    <div class="row" 
+         *ngIf="mensagemAvalPendentes != undefined || mensagemConvPendentes != undefined">
+      <div class="col-6"
+           *ngIf="mensagemAvalPendentes != undefined">
+        <div class="alert alert-warning alert-dismissible fade-show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <a (click)="telaPesquisaAvaliacoes()" href="javascript: return false;">
+            {{mensagemAvalPendentes.texto}}
+          </a>
+        </div>
+      </div>
+      <div class="col-6"
+           *ngIf="mensagemConvPendentes != undefined">
+        <div class="alert alert-warning alert-dismissible fade-show" role="alert">
+          <button type="button" class="close" data-dismiss="alert" aria-label="Fechar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <a (click)="telaMeusConvites()" href="javascript: return false;">
+            {{mensagemConvPendentes.texto}}
+          </a>
+        </div>
+      </div>
+    </div>
+
     <div class="row">
       <div class="col-12">
         

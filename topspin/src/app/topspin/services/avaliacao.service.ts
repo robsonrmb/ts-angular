@@ -55,4 +55,28 @@ export class AvaliacaoService {
                     .catch(error => throwError(error));
   }
 
+  isAvaliacaoPendente(): boolean {
+    if (parseInt(sessionStorage.getItem('qtdAvaliacoesPendentes')) > 0) {
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  isConvitePendente(): boolean {
+    if (parseInt(sessionStorage.getItem('qtdConvitesPendentes')) > 0) {
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  qtdAvaliacoesPendentes(): number {
+    return parseInt(sessionStorage.getItem('qtdAvaliacoesPendentes'))
+  }
+
+  qtdConvitesPendentes(): number {
+    return parseInt(sessionStorage.getItem('qtdConvitesPendentes'))
+  }
+
 }

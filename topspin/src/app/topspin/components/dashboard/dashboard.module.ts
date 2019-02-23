@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { DashboardComponent } from './dashboard.component';
 import { Permissao } from '../../security';
-import { LoginService, UsuarioService, EstatisticaService } from '../../services';
+import { LoginService, UsuarioService, EstatisticaService, AvaliacaoService } from '../../services';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,8 @@ import { LoginService, UsuarioService, EstatisticaService } from '../../services
     Permissao,
     LoginService,
     UsuarioService,
-    EstatisticaService
+    EstatisticaService,
+    AvaliacaoService
   ]
 })
 export class DashboardModule { }

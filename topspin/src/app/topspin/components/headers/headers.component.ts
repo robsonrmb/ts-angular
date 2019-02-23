@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { LoginService } from '../../services';
+import { LoginService, AvaliacaoService } from '../../services';
 import { UsuarioService } from '../../services/usuario.service';
 import { Usuario } from '../../models';
 
@@ -17,6 +17,7 @@ export class HeadersComponent implements OnInit {
 
   constructor(private loginService: LoginService,
               private usuarioService: UsuarioService,
+              private avaliacaoService: AvaliacaoService,
               private router: Router) { }
 
   ngOnInit() {
@@ -42,27 +43,19 @@ export class HeadersComponent implements OnInit {
   }
 
   isAvaliacaoPendente(): boolean {
-    if (parseInt(sessionStorage.getItem('qtdAvaliacoesPendentes')) > 0) {
-      return true;
-    }else{
-      return false;
-    }
+    return this.avaliacaoService.isAvaliacaoPendente()
   }
 
   isConvitePendente(): boolean {
-    if (parseInt(sessionStorage.getItem('qtdConvitesPendentes')) > 0) {
-      return true;
-    }else{
-      return false;
-    }
+    return this.avaliacaoService.isConvitePendente()
   }
 
   qtdAvaliacoesPendentes(): number {
-    return parseInt(sessionStorage.getItem('qtdAvaliacoesPendentes'))
+    return this.avaliacaoService.qtdAvaliacoesPendentes()
   }
 
   qtdConvitesPendentes(): number {
-    return parseInt(sessionStorage.getItem('qtdConvitesPendentes'))
+    return this.avaliacaoService.qtdConvitesPendentes()
   }
 
   login() {
