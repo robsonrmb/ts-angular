@@ -80,6 +80,7 @@ export class CadastroAvaliacaoComponent implements OnInit {
             this.carregaUsuarios(result)
           }
         )
+    this.avaliacao.idAvaliado = ""
   }
 
 }
