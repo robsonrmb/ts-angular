@@ -7,11 +7,15 @@ import { AvaliacaoService, UsuarioService } from '../../services';
 import { CadastroAvaliacaoComponent } from './cadastro';
 import { PesquisaAvaliacaoComponent } from './pesquisa';
 import { SharedModule } from '../shared';
+import { AvalieComponent } from './avalie';
+import { FormDebugComponent } from '../form-debug';
 
 @NgModule({
   declarations: [
     CadastroAvaliacaoComponent,
-    PesquisaAvaliacaoComponent
+    PesquisaAvaliacaoComponent,
+    AvalieComponent,
+    FormDebugComponent
   ],
   imports: [
     CommonModule,

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { throwError } from 'rxjs';
 
 import { RECURSO_URL_AVALIACOES } from '../constantes';
-import { Avaliacao } from '../models';
+import { Avaliacao, AvaliacaoArea } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +51,12 @@ export class AvaliacaoService {
 
   countAvaliacoesPendentes(idUsuario: string) {
     return this.http.get(`${RECURSO_URL_AVALIACOES}/recebidas/pendentes/qtd/${idUsuario}`)
+                    .map(response => response.json())
+                    .catch(error => throwError(error));
+  }
+
+  listaAreaAvaliacoes() {
+    return this.http.get(`http://localhost:8080/area-avaliacoes/ativas`)
                     .map(response => response.json())
                     .catch(error => throwError(error));
   }

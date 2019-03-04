@@ -6,7 +6,7 @@ import { EntradaLoginComponent, CadastroLoginComponent } from './topspin/compone
 import { CadastroUsuarioComponent, PesquisaUsuarioComponent, AmigoComponent } from './topspin/components/usuarios';
 import { CadastroConviteComponent, PesquisaConviteComponent } from './topspin/components/convites';
 import { CadastroJogoComponent } from './topspin/components/jogos';
-import { CadastroAvaliacaoComponent, PesquisaAvaliacaoComponent } from './topspin/components/avaliacoes';
+import { CadastroAvaliacaoComponent, PesquisaAvaliacaoComponent, AvalieComponent } from './topspin/components/avaliacoes';
 import { Permissao } from './topspin/security';
 import { ExternalComponent } from './topspin/components/external/external.component';
 import { externalURLProvider } from './topspin/constantes/externalUrlProvider';
@@ -24,6 +24,7 @@ const routes: Routes = [
   {path: 'listaConvites', component: PesquisaConviteComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'cadJogo', component: CadastroJogoComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'cadAvaliacao/:idAvaliado', component: CadastroAvaliacaoComponent, canLoad: [Permissao], canActivate: [Permissao]},
+  {path: 'avalie/:idAvaliado', component: AvalieComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'pesqAvaliacao', component: PesquisaAvaliacaoComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'pesqEstatisticas/:idUsuario', component: EstatisticasComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'externalRedirect', resolve: {url: externalURLProvider,}, component: ExternalComponent,}
