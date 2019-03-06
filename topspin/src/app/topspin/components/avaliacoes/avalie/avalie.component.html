@@ -56,13 +56,15 @@
                     
                     <label class="col-3">{{tipo.nome}}</label>
                     <div class="col-7">
+
                       <select required
-                        name="{{tipo.id}}" 
+                        name="tipo_{{tipo.nome}}" 
                         [(ngModel)]="tipo.descricao" 
                         class="form-control">
                         <option value="">Selecione...</option>
                         <option *ngFor="let resposta of tipo.tipoRespostas" value="{{resposta.id}}">{{resposta.nome}}</option>
                       </select>
+
                     </div>
 
                   </div>

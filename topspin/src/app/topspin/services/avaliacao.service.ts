@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { throwError } from 'rxjs';
 
 import { RECURSO_URL_AVALIACOES } from '../constantes';
-import { Avaliacao, AvaliacaoArea } from '../models';
+import { Avaliacao, AvaliacaoArea, AvaliacaoResult } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +15,12 @@ export class AvaliacaoService {
 
   inclui(avaliacao: Avaliacao): Observable<boolean> {
     return this.http.post(`${RECURSO_URL_AVALIACOES}/add`, avaliacao)
+                    .map(response => true)
+                    .catch(error => throwError(error));
+  }
+
+  incluiRespostas(avaliacao: AvaliacaoResult): Observable<boolean> {
+    return this.http.post(`${RECURSO_URL_AVALIACOES}/add-respostas`, avaliacao)
                     .map(response => true)
                     .catch(error => throwError(error));
   }
