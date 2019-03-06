@@ -77,7 +77,6 @@ export class AvalieComponent implements OnInit {
     //console.log(this.formAvaliacoes.value)
     //console.log(this.listaDeAvaliacoes[0].tipo)
     //console.log(this.listaDeAvaliacoes[0].tipo[0].descricao)
-    //console.log(this.listaDeAvaliacoes[0].tipo[1].descricao)
     
     this.avaliacaoResult = new AvaliacaoResult()
     this.avaliacaoResult.id = this.avaliacao.id
@@ -107,10 +106,16 @@ export class AvalieComponent implements OnInit {
       avalTipo = this.listaDeAvaliacoes[i].tipo
       for (let j=0; j<avalTipo.length; j++) {
         let tp = avalTipo[j]
-        this.avaliacaoResult.respostas[contador] = tp.id + "#" + tp.descricao
+        this.avaliacaoResult.respostas[contador] = tp.id + "#" + tp.resposta_selecionada
         contador++
       }
     }
+    //TESTE - Visualização no console
+    /*
+    for (let i=0; i<this.avaliacaoResult.respostas.length; i++) {
+      console.log(this.avaliacaoResult.respostas[i])
+    }
+    */
   }
 
   atualizaUsuarios(estado: string) {

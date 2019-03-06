@@ -59,7 +59,7 @@
 
                       <select required
                         name="tipo_{{tipo.nome}}" 
-                        [(ngModel)]="tipo.descricao" 
+                        [(ngModel)]="tipo.resposta_selecionada" 
                         class="form-control">
                         <option value="">Selecione...</option>
                         <option *ngFor="let resposta of tipo.tipoRespostas" value="{{resposta.id}}">{{resposta.nome}}</option>
