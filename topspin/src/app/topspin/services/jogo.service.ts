@@ -4,7 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { throwError } from 'rxjs';
 
 import { Jogo, UltimosJogos } from '../models';
-import { RECURSO_URL_JOGOS } from '../constantes';
+//import { RECURSO_URL_AMIGOS } from '../constantes';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +15,13 @@ export class JogoService {
   constructor(private http: Http) { }
 
   inclui(jogo: Jogo): Observable<boolean> {
-    return this.http.post(`${RECURSO_URL_JOGOS}/add`, jogo)
+    return this.http.post(`${environment.recurso_url.jogos}/add`, jogo)
                     .map(response => true)
                     .catch(error => throwError(error));
   }
 
   listaUltimosJogosPorUsuario(id: string, qtd: number): Observable<UltimosJogos> {
-    return this.http.get(`${RECURSO_URL_JOGOS}/ultimos-jogos?usuario=${id}&&qtd=${qtd}`)
+    return this.http.get(`${environment.recurso_url.jogos}/ultimos-jogos?usuario=${id}&&qtd=${qtd}`)
                     .map(response => response.json())
                     .catch(error => throwError(error));
   }

@@ -4,6 +4,16 @@
 
 export const environment = {
   production: false,
+  recurso_url: {
+    acesso: 'http://localhost:8080/acesso',
+    usuarios: 'http://localhost:8080/usuarios',
+    amigos: 'http://localhost:8080/amigos',
+    convites: 'http://localhost:8080/convites',
+    jogos: 'http://localhost:8080/jogos',
+    avaliacoes: 'http://localhost:8080/avaliacoes',
+    estatisticas: 'http://localhost:8080/estatisticas',
+    area_avaliacoes: 'http://localhost:8080/area-avaliacoes'
+  },
   firebase: {
     apiKey: "AIzaSyAFMvgAHhkwtfHCRTypNv03pJIu9aqXgAU",
     authDomain: "topspin-f80d8.firebaseapp.com",

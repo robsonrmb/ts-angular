@@ -4,7 +4,8 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 import { throwError } from 'rxjs';
 
-import { RECURSO_URL_ACESSO } from '../constantes';
+//import { RECURSO_URL_AMIGOS } from '../constantes';
+import { environment } from '../../../environments/environment';
 import { Login, FormCadastroLogin } from '../models';
 
 @Injectable({
@@ -27,7 +28,7 @@ export class LoginService {
   }
 
   login(loginModel: Login): Observable<boolean> {
-    return this.http.post(`${RECURSO_URL_ACESSO}/existe`, loginModel)
+    return this.http.post(`${environment.recurso_url.acesso}/existe`, loginModel)
                     .map(response => response.json())
                     .catch(error => throwError(error));
   }
@@ -37,7 +38,7 @@ export class LoginService {
   }
 
   inclui(formCadastroLoginModel: FormCadastroLogin): Observable<boolean> {
-    return this.http.post(`${RECURSO_URL_ACESSO}/add`, formCadastroLoginModel)
+    return this.http.post(`${environment.recurso_url.acesso}/add`, formCadastroLoginModel)
                     .map(response => true)
                     .catch(error => throwError(error));
   }
