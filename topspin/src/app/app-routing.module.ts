@@ -24,6 +24,7 @@ const routes: Routes = [
   {path: 'cadConvite/:idConvidado', component: CadastroConviteComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'listaConvites', component: PesquisaConviteComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'cadJogo', component: CadastroJogoComponent, canLoad: [Permissao], canActivate: [Permissao]},
+  //{path: 'cadJogo', loadChildren: './topspin/components/jogos/jogos.module#JogosModule', canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'cadAvaliacao/:idAvaliado', component: CadastroAvaliacaoComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'avalie/:idAvaliado', component: AvalieComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'pesqAvaliacao', component: PesquisaAvaliacaoComponent, canLoad: [Permissao], canActivate: [Permissao]},
