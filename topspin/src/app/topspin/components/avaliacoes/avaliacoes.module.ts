@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AvaliacaoService, UsuarioService } from '../../services';
 import { CadastroAvaliacaoComponent } from './cadastro';
@@ -9,18 +9,21 @@ import { PesquisaAvaliacaoComponent } from './pesquisa';
 import { SharedModule } from '../shared';
 import { AvalieComponent } from './avalie';
 import { FormDebugComponent } from '../form-debug';
+import { CadastroReactiveComponent } from './reactive';
 
 @NgModule({
   declarations: [
     CadastroAvaliacaoComponent,
     PesquisaAvaliacaoComponent,
     AvalieComponent,
+    CadastroReactiveComponent,
     FormDebugComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule,
     SharedModule
   ],
   providers: [

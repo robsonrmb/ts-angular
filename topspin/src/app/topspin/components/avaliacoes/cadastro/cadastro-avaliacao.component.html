@@ -54,6 +54,8 @@
                         (change)="limpaValoresAvaliacao()">
                   <option value="0">Estrelas</option>
                   <option value="1">Padrão</option>
+                  <option value="2">Dinâmico</option>
+                  <option value="3">Reactive Forms</option>
                 </select>
               </div>
             </div>
@@ -85,7 +87,7 @@
                       </select>
                     </div>
                     <div *ngIf="tipoAvaliacao == 0" class="col-4">
-                      <app-rating (valorEmit)="setValorSelecionado($event, 'saque')"></app-rating> {{avaliacao.respostaSaque}}
+                      <app-rating (valorEmit)="setValorSelecionado($event, 'saque')"></app-rating>
                     </div>
                   </div>
                 </div>
@@ -106,7 +108,7 @@
                         </select>
                     </div>
                     <div *ngIf="tipoAvaliacao == 0" class="col-4">
-                      <app-rating (valorEmit)="setValorSelecionado($event, 'forehand')"></app-rating> {{avaliacao.respostaForehand}}
+                      <app-rating (valorEmit)="setValorSelecionado($event, 'forehand')"></app-rating>
                     </div>
                   </div>
                 </div>
@@ -127,7 +129,7 @@
                         </select>
                     </div>
                     <div *ngIf="tipoAvaliacao == 0" class="col-4">
-                      <app-rating (valorEmit)="setValorSelecionado($event, 'backhand')"></app-rating> {{avaliacao.respostaBackhand}}
+                      <app-rating (valorEmit)="setValorSelecionado($event, 'backhand')"></app-rating>
                     </div>
                   </div>
                 </div>
@@ -148,7 +150,7 @@
                         </select>
                     </div>
                     <div *ngIf="tipoAvaliacao == 0" class="col-4">
-                      <app-rating (valorEmit)="setValorSelecionado($event, 'voleio')"></app-rating> {{avaliacao.respostaVoleio}}
+                      <app-rating (valorEmit)="setValorSelecionado($event, 'voleio')"></app-rating>
                     </div>
                   </div>
                 </div>
@@ -169,7 +171,7 @@
                         </select>
                     </div>
                     <div *ngIf="tipoAvaliacao == 0" class="col-4">
-                      <app-rating (valorEmit)="setValorSelecionado($event, 'smash')"></app-rating> {{avaliacao.respostaSmash}}
+                      <app-rating (valorEmit)="setValorSelecionado($event, 'smash')"></app-rating>
                     </div>
                   </div>
                 </div>
@@ -193,7 +195,7 @@
                         </select>
                     </div>
                     <div *ngIf="tipoAvaliacao == 0" class="col-4">
-                      <app-rating (valorEmit)="setValorSelecionado($event, 'ofensivo')"></app-rating> {{avaliacao.respostaOfensivo}}
+                      <app-rating (valorEmit)="setValorSelecionado($event, 'ofensivo')"></app-rating>
                     </div>
                   </div>
                 </div>
@@ -214,7 +216,7 @@
                         </select>
                     </div>
                     <div *ngIf="tipoAvaliacao == 0" class="col-4">
-                      <app-rating (valorEmit)="setValorSelecionado($event, 'defensivo')"></app-rating> {{avaliacao.respostaDefensivo}}
+                      <app-rating (valorEmit)="setValorSelecionado($event, 'defensivo')"></app-rating>
                     </div>
                   </div>
                 </div>
@@ -235,7 +237,7 @@
                         </select>
                     </div>
                     <div *ngIf="tipoAvaliacao == 0" class="col-4">
-                      <app-rating (valorEmit)="setValorSelecionado($event, 'tatico')"></app-rating> {{avaliacao.respostaTatico}}
+                      <app-rating (valorEmit)="setValorSelecionado($event, 'tatico')"></app-rating>
                     </div>
                   </div>
                 </div>
@@ -256,7 +258,7 @@
                         </select>
                     </div>
                     <div *ngIf="tipoAvaliacao == 0" class="col-4">
-                      <app-rating (valorEmit)="setValorSelecionado($event, 'competitivo')"></app-rating> {{avaliacao.respostaCompetitivo}}
+                      <app-rating (valorEmit)="setValorSelecionado($event, 'competitivo')"></app-rating>
                     </div>
                   </div>
                 </div>
@@ -277,7 +279,7 @@
                         </select>
                     </div>
                     <div *ngIf="tipoAvaliacao == 0" class="col-4">
-                      <app-rating (valorEmit)="setValorSelecionado($event, 'preparo')"></app-rating> {{avaliacao.respostaPreparo}}
+                      <app-rating (valorEmit)="setValorSelecionado($event, 'preparo')"></app-rating>
                     </div>
                   </div>
                 </div>

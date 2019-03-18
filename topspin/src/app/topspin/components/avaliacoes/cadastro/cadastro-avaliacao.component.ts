@@ -64,7 +64,6 @@ export class CadastroAvaliacaoComponent implements OnInit {
 
   avaliar() {
     if (this.isFormularioValido() == 0) {
-      console.log("Granvando...")
       this.avaliacao.idUsuario = this.usuarioService.getUsuario().id
       this.avaliacaoService.inclui(this.avaliacao)
           .subscribe(
@@ -125,27 +124,27 @@ export class CadastroAvaliacaoComponent implements OnInit {
     this.avaliacao.idAvaliado = ""
   }
 
-  setValorSelecionado(valorDaAvaliacao: number, valor: string) {
+  setValorSelecionado(descricao: string, valor: string) {
     if (valor == "saque") {
-      this.avaliacao.respostaSaque = this.retornaRespostaAvaliacao(valorDaAvaliacao);
+      this.avaliacao.respostaSaque = descricao;
     }else if (valor == "forehand") {
-      this.avaliacao.respostaForehand = this.retornaRespostaAvaliacao(valorDaAvaliacao);
+      this.avaliacao.respostaForehand = descricao;
     }else if (valor == "backhand") {
-      this.avaliacao.respostaBackhand = this.retornaRespostaAvaliacao(valorDaAvaliacao);
+      this.avaliacao.respostaBackhand = descricao;
     }else if (valor == "voleio") {
-      this.avaliacao.respostaVoleio = this.retornaRespostaAvaliacao(valorDaAvaliacao);
+      this.avaliacao.respostaVoleio = descricao;
     }else if (valor == "smash") {
-      this.avaliacao.respostaSmash = this.retornaRespostaAvaliacao(valorDaAvaliacao);
+      this.avaliacao.respostaSmash = descricao;
     }else if (valor == "ofensivo") {
-      this.avaliacao.respostaOfensivo = this.retornaRespostaAvaliacao(valorDaAvaliacao);
+      this.avaliacao.respostaOfensivo = descricao;
     }else if (valor == "defensivo") {
-      this.avaliacao.respostaDefensivo = this.retornaRespostaAvaliacao(valorDaAvaliacao);
+      this.avaliacao.respostaDefensivo = descricao;
     }else if (valor == "tatico") {
-      this.avaliacao.respostaTatico = this.retornaRespostaAvaliacao(valorDaAvaliacao);
+      this.avaliacao.respostaTatico = descricao;
     }else if (valor == "competitivo") {
-      this.avaliacao.respostaCompetitivo = this.retornaRespostaAvaliacao(valorDaAvaliacao);
+      this.avaliacao.respostaCompetitivo = descricao;
     }else if (valor == "preparo") {
-      this.avaliacao.respostaPreparo = this.retornaRespostaAvaliacao(valorDaAvaliacao);
+      this.avaliacao.respostaPreparo = descricao;
     }
   }
 
@@ -161,20 +160,23 @@ export class CadastroAvaliacaoComponent implements OnInit {
       this.avaliacao.respostaTatico = "";
       this.avaliacao.respostaCompetitivo = "";
       this.avaliacao.respostaPreparo = "";
-    }
-  }
+    
+    }else if(this.tipoAvaliacao == 2) {
+      if (this.avaliacao.idAvaliado === undefined) {
+        this.router.navigate([`avalie/0`])
+      }else{
+        this.router.navigate([`avalie/${this.avaliacao.idAvaliado}`])
+      }
 
-  private retornaRespostaAvaliacao(valorDaAvaliacao: number): string {
-    if (valorDaAvaliacao == 1) {
-      return "RUIM"
-    }else if (valorDaAvaliacao == 2) {
-      return "REGULAR"
-    }else if (valorDaAvaliacao == 3) {
-      return "BOM"
-    }else if (valorDaAvaliacao == 4) {
-      return "OTIMO"
-    }else{
-      return ""
+    }else if(this.tipoAvaliacao == 3) {
+      console.log("entrou Reactive")
+      if (this.avaliacao.idAvaliado === undefined) {
+        console.log("usuario undefined")
+        this.router.navigate([`reactive/0`])
+      }else{
+        console.log("usuario selecionado")
+        this.router.navigate([`reactive/${this.avaliacao.idAvaliado}`])
+      }
     }
   }
 
