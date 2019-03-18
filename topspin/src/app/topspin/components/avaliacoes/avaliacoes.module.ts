@@ -8,7 +8,6 @@ import { CadastroAvaliacaoComponent } from './cadastro';
 import { PesquisaAvaliacaoComponent } from './pesquisa';
 import { SharedModule } from '../shared';
 import { AvalieComponent } from './avalie';
-import { FormDebugComponent } from '../form-debug';
 import { CadastroReactiveComponent } from './reactive';
 
 @NgModule({
@@ -16,8 +15,7 @@ import { CadastroReactiveComponent } from './reactive';
     CadastroAvaliacaoComponent,
     PesquisaAvaliacaoComponent,
     AvalieComponent,
-    CadastroReactiveComponent,
-    FormDebugComponent
+    CadastroReactiveComponent
   ],
   imports: [
     CommonModule,

@@ -104,13 +104,7 @@ export class CadastroReactiveComponent implements OnInit {
   avaliar() {
     if (this.isFormularioValido() == 0) {
       this.avaliacao.idUsuario = this.usuarioService.getUsuario().id
-      alert(this.avaliacao.idUsuario)
-      alert(this.avaliacao.idAvaliado)
-      alert(this.avaliacao.respostaSaque)
-      alert(this.avaliacao.respostaPreparo)
-      alert("Salvando...")
 
-      /*
       this.avaliacaoService.inclui(this.avaliacao)
           .subscribe(
             (result) => {
@@ -118,7 +112,7 @@ export class CadastroReactiveComponent implements OnInit {
               this.router.navigate(['dashboard'])
             },
             (error) => this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao incluir avaliação!!!')
-          )*/
+          )
     }
   }
 
