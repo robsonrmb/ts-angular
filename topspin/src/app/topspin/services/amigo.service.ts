@@ -15,7 +15,7 @@ export class AmigoService {
   constructor(private http: Http) { }
 
   listaAmigos(id: string) {
-    return this.http.get(`${environment.recurso_url.amigos}/${id}`)
+    return this.http.get(`${environment.recurso_url.amigos}/0`)
                     .map(response => response.json())
                     .catch(error => throwError(error));
   }

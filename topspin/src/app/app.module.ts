@@ -23,13 +23,15 @@ import { FootersComponent } from './topspin/components/footers/footers.component
 import { externalURLProvider } from './topspin/constantes/externalUrlProvider';
 import { ExternalComponent } from './topspin/components/external/external.component';
 import { ApplicationErrorHandler } from './app.error-handler';
+import { GlobalComponent } from './topspin/components/erros/global/global.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeadersComponent,
     FootersComponent,
-    ExternalComponent
+    ExternalComponent,
+    GlobalComponent
   ],
   imports: [
     BrowserModule,

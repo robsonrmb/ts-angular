@@ -10,7 +10,8 @@ import { CadastroAvaliacaoComponent, PesquisaAvaliacaoComponent, AvalieComponent
 import { Permissao } from './topspin/security';
 import { ExternalComponent } from './topspin/components/external/external.component';
 import { externalURLProvider } from './topspin/constantes/externalUrlProvider';
-import { EstatisticasComponent } from './topspin';
+import { EstatisticasComponent} from './topspin/components/estatisticas';
+import { GlobalComponent } from './topspin/components/erros';
 
 const routes: Routes = [
   {path: '', component: DashboardComponent, canLoad: [Permissao], canActivate: [Permissao]},
@@ -30,6 +31,7 @@ const routes: Routes = [
   {path: 'reactive/:idAvaliado', component: CadastroReactiveComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'pesqAvaliacao', component: PesquisaAvaliacaoComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'pesqEstatisticas/:idUsuario', component: EstatisticasComponent, canLoad: [Permissao], canActivate: [Permissao]},
+  {path: 'erro-global', component: GlobalComponent},
   {path: 'externalRedirect', resolve: {url: externalURLProvider,}, component: ExternalComponent,}
 ];
 
