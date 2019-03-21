@@ -1,9 +1,8 @@
 import { ErrorHandler, Injectable, Injector } from "@angular/core";
-import { HttpErrorResponse } from "@angular/common/http";
 import { Router } from "@angular/router";
 
 import { environment } from '../environments/environment';
-import { ErroService } from "./topspin/services/erro.service";
+import { ErroService } from "./topspin/services";
 
 @Injectable()
 export class ApplicationErrorHandler implements ErrorHandler {
@@ -14,18 +13,28 @@ export class ApplicationErrorHandler implements ErrorHandler {
     handleError(error: any) {
         console.log('Error handler em execução!!!')
         console.log("Status code: ", error.status);
+        console.log("Stack Trace: ", error.stackTrace)
         if (!environment.production) {
             console.log(error);
-            console.log(error.status);
         }
         switch (error.status) {
             case 400:
                 alert("Erro 400.")
-                //this.erroService.setErroGlobal("mensagem...", error.status, "data...", 
-                //                               "causa...", "path...", "stackTrace...")
-                //this.erroService.setMensagem("Mensagem.....")
-                //this.erroService.setStatus("Status.....")
+                this.erroService.setErroGlobal(error.mensagem, 
+                                               error.status, 
+                                               error.dada, 
+                                               error.causa, 
+                                               error.path, 
+                                               error.stackTrace)
+
+                this.erroService.setMensagem("Mensagem.....")
+                this.erroService.setStatus("Status.....")
+                this.erroService.setData("Data.....")
+                this.erroService.setCausa("Causa.....")
+                this.erroService.setPath("Path.....")
+                this.erroService.setStackTrace("Stack Trace.....")
                 alert("Carregou o serviço...")
+
                 this.injector.get(Router).navigate(['/erro-global'])
                 break;
             case 401:

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ErroGlobal } from 'src/app/topspin/models';
+import { ErroService } from 'src/app/topspin/services';
 
 @Component({
   selector: 'app-global',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GlobalComponent implements OnInit {
 
-  constructor() { }
+  erroGlobal: ErroGlobal
+
+  constructor(private erroService: ErroService) { }
 
   ngOnInit() {
+    this.erroGlobal = this.erroService.getErroGlobal()
   }
 
 }

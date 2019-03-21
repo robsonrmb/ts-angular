@@ -6,10 +6,14 @@ import { ErroGlobal } from '../models';
 })
 export class ErroService {
 
-  private erroGlobal: ErroGlobal
+  private erroGlobal: ErroGlobal = new ErroGlobal()
 
   constructor() { }
 
+  getErroGlobal(): ErroGlobal {
+    return this.erroGlobal
+  }
+  
   setErroGlobal(mensagem: string,
                 status: string,
                 data: string,
@@ -35,23 +39,35 @@ export class ErroService {
   getStatus(): String {
     return this.erroGlobal.status
   }
-  setStatus(st: string) {
-    this.erroGlobal.status = st
+  setStatus(status: string) {
+    this.erroGlobal.status = status
   }
 
   getData(): String {
     return this.erroGlobal.data
   }
+  setData(data: string) {
+    this.erroGlobal.data = data
+  }
 
   getCausa(): String {
     return this.erroGlobal.causa
+  }
+  setCausa(causa: string) {
+    this.erroGlobal.causa = causa
   }
 
   getPath(): String {
     return this.erroGlobal.path
   }
+  setPath(path: string) {
+    this.erroGlobal.path = path
+  }
 
   getStackTrace(): String {
     return this.erroGlobal.stackTrace
+  }
+  setStackTrace(st: string) {
+    this.erroGlobal.stackTrace = st
   }
 }

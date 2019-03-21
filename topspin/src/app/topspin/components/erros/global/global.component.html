@@ -10,10 +10,18 @@
       </li>
     </ol>
 
-    <div class="col-8">
-      <div class="card border-warning">
-        <div class="card-header text-center">{{erroGlobal.data}}</div>
-        <div class="card-body text-center bg-warning"><h3>{{erroGlobal.status}}</h3></div>
+    <div class="col-12">
+      <div class="card border-info">
+        <div class="card-header text-center"><h2>{{erroGlobal.status}}</h2></div>
+        <div class="card-body text-center bg-light">
+            <h4>
+                {{erroGlobal.data}}<br />
+                {{erroGlobal.path}}<br />
+                {{erroGlobal.mensagem}}<br />
+                {{erroGlobal.causa}}<br />
+                {{erroGlobal.stackTrace}}
+            </h4>
+        </div>
       </div>
     </div>
 
