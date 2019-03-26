@@ -15,68 +15,68 @@ export class EntradaLoginComponent implements OnInit {
 
   @ViewChild('formLogin') formLogin: NgForm;
   
-  mensagemErro: string
-  loginModel: Login
-  usuario: Usuario
-  
+  mensagemErro: string;
+  loginModel: Login;
+  usuario: Usuario;
+
   constructor(private loginService: LoginService,
-              private usuarioService: UsuarioService, 
+              private usuarioService: UsuarioService,
               private conviteService: ConviteService,
               private avaliacaoService: AvaliacaoService,
               private router: Router) { }
 
   ngOnInit() {
-    this.mensagemErro = ''
-    this.loginModel = new Login()
-    this.loginModel.email = 'robson@gmail.com'
-    this.loginModel.senha = '123'
-    this.loginService.logout()
+    this.mensagemErro = '';
+    this.loginModel = new Login();
+    this.loginModel.email = 'robson@gmail.com';
+    this.loginModel.senha = '123';
+    this.loginService.logout();
     
-    window.sessionStorage.removeItem('usuarioLogado')
-    window.sessionStorage.removeItem('idUsuario')
-    window.sessionStorage.removeItem('emailUsuario')
-    window.sessionStorage.removeItem('nomeUsuario')
-    window.sessionStorage.removeItem('qtdAvaliacoesPendentes')
-    window.sessionStorage.removeItem('qtdConvitesPendentes')
+    window.sessionStorage.removeItem('usuarioLogado');
+    window.sessionStorage.removeItem('idUsuario');
+    window.sessionStorage.removeItem('emailUsuario');
+    window.sessionStorage.removeItem('nomeUsuario');
+    window.sessionStorage.removeItem('qtdAvaliacoesPendentes');
+    window.sessionStorage.removeItem('qtdConvitesPendentes');
   }
 
   entrar() {
     this.loginService.login(this.loginModel).subscribe(
       (result: boolean) => {
         if (result) {
-          this.loginService.setUsuarioLogado(true)
+          this.loginService.setUsuarioLogado(true);
           this.usuarioService
             .buscaPorEmail(this.loginModel.email)
             .subscribe(
               (response) => {
-                window.sessionStorage.setItem('usuarioLogado', 'S')
-                window.sessionStorage.setItem('idUsuario', response.id)
-                window.sessionStorage.setItem('emailUsuario', response.email)
-                window.sessionStorage.setItem('nomeUsuario', response.nome)
+                window.sessionStorage.setItem('usuarioLogado', 'S');
+                window.sessionStorage.setItem('idUsuario', response.id);
+                window.sessionStorage.setItem('emailUsuario', response.email);
+                window.sessionStorage.setItem('nomeUsuario', response.nome);
 
-                this.usuarioService.setUsuarioLogado(true)
-                this.usuarioService.setUsuario(response)
+                this.usuarioService.setUsuarioLogado(true);
+                this.usuarioService.setUsuario(response);
 
-                this.carregaAvaliacaoPendente(response.id)
-                this.carregaConvitePendente(response.id)
+                this.carregaAvaliacaoPendente(response.id);
+                this.carregaConvitePendente(response.id);
                 setTimeout(() => {
                   this.router.navigate(['/dashboard'])
                 }, 250);
               },
               (error) => {
-                this.mensagemErro = "Erro no processo de autenticação."
+                this.mensagemErro = "Erro no processo de autenticação.";
               }
             );
-        }else{
-          this.mensagemErro = 'Dados incorretos!!!'
+        } else {
+          this.mensagemErro = 'Dados incorretos!!!';
         }
       },
       (error: ExceptionTS) => {
-        let excecao = JSON.parse(error._body)
-        this.mensagemErro = excecao.message
-        this.traceDeveloper(error, excecao)
+        let excecao = JSON.parse(error._body);
+        this.mensagemErro = excecao.message;
+        this.traceDeveloper(error, excecao);
       }
-    ) 
+    )
   }
 
   carregaAvaliacaoPendente(idUsuario: string) {
@@ -86,7 +86,7 @@ export class EntradaLoginComponent implements OnInit {
           (response) => {
             window.sessionStorage.setItem('qtdAvaliacoesPendentes', response.quantidade)
           }
-        )
+        );
   }
 
   carregaConvitePendente(idUsuario: string) {
@@ -94,33 +94,33 @@ export class EntradaLoginComponent implements OnInit {
         .countConvitesPendentes(idUsuario)
         .subscribe(
           (response) => {
-            window.sessionStorage.setItem('qtdConvitesPendentes', response.quantidade)
+            window.sessionStorage.setItem('qtdConvitesPendentes', response.quantidade);
           }
-        )
+        );
   }
 
   isMensagem() {
     if (this.mensagemErro != undefined && this.mensagemErro != "") {
-      return true
-    }else{
-      return false
+      return true;
+    } else {
+      return false;
     }
   }
 
   cadastrar() {
-    this.router.navigate(['/cadastroLogin'])
+    this.router.navigate(['/cadastroLogin']);
   }
 
   redirecionaParaSiteExterno() {
-    this.router.navigate(['/externalRedirect', {externalUrl: 'http://www.google.com'}])
-    //https://app.correiosnet.int/cas/login?service=http://localhost:4200/dashboard
+    this.router.navigate(['/externalRedirect', {externalUrl: 'http://www.google.com'}]);
+    // https://app.correiosnet.int/cas/login?service=http://localhost:4200/dashboard
   }
 
   private traceDeveloper(error: ExceptionTS, excecao: any) {
-    console.log("LOG FOR DEVELOPER\n")
-    console.log("Código de erro: ", excecao.status)
-    console.log("URL: ", error.url)
-    console.log(excecao.trace)
+    console.log("LOG FOR DEVELOPER\n");
+    console.log("Código de erro: ", excecao.status);
+    console.log("URL: ", error.url);
+    console.log(excecao.trace);
   }
 
 }

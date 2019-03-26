@@ -1,1 +1,1 @@
-export * from './avalie.component'
+export * from './avalie.component';

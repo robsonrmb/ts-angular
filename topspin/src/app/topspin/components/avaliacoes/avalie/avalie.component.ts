@@ -15,15 +15,15 @@ export class AvalieComponent implements OnInit {
 
   @ViewChild('formAvaliacoes') formAvaliacoes: NgForm;
   
-  avaliacao: Avaliacao
-  estado: string
-  estados: ChaveValor[]
-  usuarios: ChaveValor[]
-  respostas: ChaveValor[]
-  mensagem: Mensagem
+  avaliacao: Avaliacao;
+  estado: string;
+  estados: ChaveValor[];
+  usuarios: ChaveValor[];
+  respostas: ChaveValor[];
+  mensagem: Mensagem;
 
-  listaDeAvaliacoes: AvaliacaoArea[]
-  avaliacaoResult: AvaliacaoResult
+  listaDeAvaliacoes: AvaliacaoArea[];
+  avaliacaoResult: AvaliacaoResult;
 
   constructor(private avaliacaoService: AvaliacaoService,
               private usuarioService: UsuarioService,
@@ -46,22 +46,22 @@ export class AvalieComponent implements OnInit {
                     }
                   )
             }
-          )
+          );
      
-      this.mensagem = new Mensagem()
+      this.mensagem = new Mensagem();
     }
 
     this.avaliacaoService.listaAreaAvaliacoes().subscribe(
       (result) => {
-        console.log(result)
-        this.listaDeAvaliacoes = result
+        console.log(result);
+        this.listaDeAvaliacoes = result;
       },
       (error) => console.log('Erro ao listar as avaliações!!!')
-    )
+    );
 
-    this.avaliacao = new Avaliacao()
-    this.estados = ESTADOS
-    this.respostas = RESPOSTAS_PERFORMANCE 
+    this.avaliacao = new Avaliacao();
+    this.estados = ESTADOS;
+    this.respostas = RESPOSTAS_PERFORMANCE;
   }
 
   private carregaUsuarios(listaDeUsuarios: Usuario[]) {
@@ -73,19 +73,19 @@ export class AvalieComponent implements OnInit {
   }
 
   avaliar() {
-    this.avaliacao.idUsuario = this.usuarioService.getUsuario().id
-    //console.log(this.formAvaliacoes.value)
-    //console.log(this.listaDeAvaliacoes[0].tipo)
-    //console.log(this.listaDeAvaliacoes[0].tipo[0].descricao)
+    this.avaliacao.idUsuario = this.usuarioService.getUsuario().id;
+    // console.log(this.formAvaliacoes.value)
+    // console.log(this.listaDeAvaliacoes[0].tipo)
+    // console.log(this.listaDeAvaliacoes[0].tipo[0].descricao)
     
-    this.avaliacaoResult = new AvaliacaoResult()
-    this.avaliacaoResult.id = this.avaliacao.id
-    this.avaliacaoResult.idUsuario = this.avaliacao.idUsuario
-    this.avaliacaoResult.idAvaliado = this.avaliacao.idAvaliado
-    this.avaliacaoResult.data = this.avaliacao.data
-    this.avaliacaoResult.status = this.avaliacao.status
+    this.avaliacaoResult = new AvaliacaoResult();
+    this.avaliacaoResult.id = this.avaliacao.id;
+    this.avaliacaoResult.idUsuario = this.avaliacao.idUsuario;
+    this.avaliacaoResult.idAvaliado = this.avaliacao.idAvaliado;
+    this.avaliacaoResult.data = this.avaliacao.data;
+    this.avaliacaoResult.status = this.avaliacao.status;
 
-    this.carregaRespostas()
+    this.carregaRespostas();
     
     this.avaliacaoService.incluiRespostas(this.avaliacaoResult)
         .subscribe(
@@ -94,7 +94,7 @@ export class AvalieComponent implements OnInit {
             this.router.navigate(['dashboard'])
           },
           (error) => console.log('Erro ao incluir avaliação!!!')
-        )
+        );
   }
 
   private carregaRespostas() {
@@ -102,15 +102,15 @@ export class AvalieComponent implements OnInit {
     this.avaliacaoResult.respostas = []
 
     for (let i=0; i<this.listaDeAvaliacoes.length; i++) {
-      let avalTipo: any
-      avalTipo = this.listaDeAvaliacoes[i].tipo
+      let avalTipo: any;
+      avalTipo = this.listaDeAvaliacoes[i].tipo;
       for (let j=0; j<avalTipo.length; j++) {
-        let tp = avalTipo[j]
-        this.avaliacaoResult.respostas[contador] = tp.id + "#" + tp.resposta_selecionada
-        contador++
+        let tp = avalTipo[j];
+        this.avaliacaoResult.respostas[contador] = tp.id + "#" + tp.resposta_selecionada;
+        contador++;
       }
     }
-    //TESTE - Visualização no console
+    // TESTE - Visualização no console
     /*
     for (let i=0; i<this.avaliacaoResult.respostas.length; i++) {
       console.log(this.avaliacaoResult.respostas[i])
@@ -124,7 +124,7 @@ export class AvalieComponent implements OnInit {
           (result) => {
             this.carregaUsuarios(result)
           }
-        )
+        );
     this.avaliacao.idAvaliado = ""
   }
 

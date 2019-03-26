@@ -43,28 +43,28 @@ export class HeadersComponent implements OnInit {
   }
 
   isAvaliacaoPendente(): boolean {
-    return this.avaliacaoService.isAvaliacaoPendente()
+    return this.avaliacaoService.isAvaliacaoPendente();
   }
 
   isConvitePendente(): boolean {
-    return this.avaliacaoService.isConvitePendente()
+    return this.avaliacaoService.isConvitePendente();
   }
 
   qtdAvaliacoesPendentes(): number {
-    return this.avaliacaoService.qtdAvaliacoesPendentes()
+    return this.avaliacaoService.qtdAvaliacoesPendentes();
   }
 
   qtdConvitesPendentes(): number {
-    return this.avaliacaoService.qtdConvitesPendentes()
+    return this.avaliacaoService.qtdConvitesPendentes();
   }
 
   login() {
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
   logout() {
-    this.loginService.logout()
-    this.router.navigate(['/login'])
+    this.loginService.logout();
+    this.router.navigate(['/login']);
   }
 
 }
