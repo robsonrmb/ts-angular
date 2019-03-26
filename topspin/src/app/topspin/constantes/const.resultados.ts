@@ -1,10 +1,10 @@
 export const RESULTADOS = [
     {
-        chave: "V",
-        valor: "Vitória"
+        chave: 'V',
+        valor: 'Vitória'
     },
     {
-        chave: "D",
-        valor: "Derrota"
+        chave: 'D',
+        valor: 'Derrota'
     }
 ]

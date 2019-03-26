@@ -13,14 +13,14 @@ import { Login, FormCadastroLogin } from '../models';
 })
 export class LoginService {
 
-  private logado: boolean
-  lastUrl: string
+  private logado: boolean;
+  lastUrl: string;
 
   constructor(private http: Http,
               private router: Router) { }
 
   isUsuarioLogado(): boolean {
-    return this.logado
+    return this.logado;
   }
 
   setUsuarioLogado(valor: boolean) {
@@ -34,7 +34,7 @@ export class LoginService {
   }
 
   logout() {
-    this.logado = false
+    this.logado = false;
   }
 
   inclui(formCadastroLoginModel: FormCadastroLogin): Observable<boolean> {
@@ -44,7 +44,7 @@ export class LoginService {
   }
 
   handleLogin(path: string = this.lastUrl) {
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']);
   }
 
 }

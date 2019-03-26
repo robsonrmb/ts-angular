@@ -15,97 +15,97 @@ export class PesquisaUsuarioComponent implements OnInit {
 
   @ViewChild('formUsuarios') formUsuarios: NgForm;
 
-  usuario: Usuario
-  listaDeUsuarios: Usuario[]
-  estados: ChaveValor[]
-  mensagem: Mensagem
-  mensagemGrid: string
+  usuario: Usuario;
+  listaDeUsuarios: Usuario[];
+  estados: ChaveValor[];
+  mensagem: Mensagem;
+  mensagemGrid: string;
   
   constructor(private usuarioService: UsuarioService,
               private amigoService: AmigoService,
               private router: Router) { }
 
   ngOnInit() {
-    this.usuario = new Usuario()
-    this.estados = ESTADOS
-    this.mensagem = new Mensagem()
-    this.mensagemGrid = ''
+    this.usuario = new Usuario();
+    this.estados = ESTADOS;
+    this.mensagem = new Mensagem();
+    this.mensagemGrid = '';
   }
 
   pesquisar() {
-    let u: Usuario = new Usuario()
-    u.nome = this.usuario.nome
-    u.email = this.usuario.email
-    u.estado = this.usuario.estado
-    u.id = this.usuarioService.getUsuario().id
+    let u: Usuario = new Usuario();
+    u.nome = this.usuario.nome;
+    u.email = this.usuario.email;
+    u.estado = this.usuario.estado;
+    u.id = this.usuarioService.getUsuario().id;
 
     this.usuarioService
       .listaPorFiltroComFlagAmigo(u)
       .subscribe(
         (result) => {
-          this.listaDeUsuarios = result
+          this.listaDeUsuarios = result;
         },
         (error) => {
-          this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao pesquisar usuários!!!')
+          this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao pesquisar usuários!!!');
         }
       )
   }
 
   colocarComoAmigo(u: Usuario) {
-    let formUsuarioAmigo: FormUsuarioAmigo
-    formUsuarioAmigo = new FormUsuarioAmigo(null, this.usuarioService.getUsuario().id, u.id)
+    let formUsuarioAmigo: FormUsuarioAmigo;
+    formUsuarioAmigo = new FormUsuarioAmigo(null, this.usuarioService.getUsuario().id, u.id);
     this.amigoService.colocarComoAmigo(formUsuarioAmigo)
         .subscribe(
           (result) => {
-            this.mudaStatusDeAmigoDoUsuarioDaLista(u.id)
-            this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário colocado como amigo com sucesso!!!')
+            this.mudaStatusDeAmigoDoUsuarioDaLista(u.id);
+            this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário colocado como amigo com sucesso!!!');
           },
           (error) => {
-            this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao colocar usuário como amigo!!!')
+            this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao colocar usuário como amigo!!!');
           }
-        )
+        );
   }
 
   retirarComoAmigo(u: Usuario) {
-    let formUsuarioAmigo: FormUsuarioAmigo
-    formUsuarioAmigo = new FormUsuarioAmigo(null, this.usuarioService.getUsuario().id, u.id)
+    let formUsuarioAmigo: FormUsuarioAmigo;
+    formUsuarioAmigo = new FormUsuarioAmigo(null, this.usuarioService.getUsuario().id, u.id);
     this.amigoService.retirarComoAmigo(formUsuarioAmigo)
         .subscribe(
           (result) => {
             this.mudaStatusDeAmigoDoUsuarioDaLista(u.id)
-            this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário retirado como amigo com sucesso!!!')
+            this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário retirado como amigo com sucesso!!!');
           },
           (error) => {
-            this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao retirar usuário como amigo!!!')
+            this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao retirar usuário como amigo!!!');
           }
         )
   }
 
   avaliar(u: Usuario) {
-    this.router.navigate(['/cadAvaliacao', u.id])
+    this.router.navigate(['/cadAvaliacao', u.id]);
   }
 
   exibirEstatisticas(u: Usuario) {
-    this.router.navigate(['/pesqEstatisticas', u.id])
+    this.router.navigate(['/pesqEstatisticas', u.id]);
   }
 
   isListaDeUsuariosVazia(): boolean {
     if (this.listaDeUsuarios === undefined || this.listaDeUsuarios.length === 0) {
-      this.mensagemGrid = 'Nenhum usuário encontrado.'
-      return true
-    }else{
-      return false
+      this.mensagemGrid = 'Nenhum usuário encontrado.';
+      return true;
+    } else {
+      return false;
     }
   }
 
   private mudaStatusDeAmigoDoUsuarioDaLista(id: string) {
-    let i: number
+    let i: number;
     for (i=0; i<this.listaDeUsuarios.length; i++) {
       if (id === this.listaDeUsuarios[i].id) {
         if (this.listaDeUsuarios[i].amigo) {
-          this.listaDeUsuarios[i].amigo = false
-        }else{
-          this.listaDeUsuarios[i].amigo = true
+          this.listaDeUsuarios[i].amigo = false;
+        } else {
+          this.listaDeUsuarios[i].amigo = true;
         }
       }
     }

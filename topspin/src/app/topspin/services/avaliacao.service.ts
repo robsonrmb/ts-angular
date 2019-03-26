@@ -71,7 +71,7 @@ export class AvaliacaoService {
   isAvaliacaoPendente(): boolean {
     if (parseInt(sessionStorage.getItem('qtdAvaliacoesPendentes')) > 0) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
@@ -79,17 +79,17 @@ export class AvaliacaoService {
   isConvitePendente(): boolean {
     if (parseInt(sessionStorage.getItem('qtdConvitesPendentes')) > 0) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
   qtdAvaliacoesPendentes(): number {
-    return parseInt(sessionStorage.getItem('qtdAvaliacoesPendentes'))
+    return parseInt(sessionStorage.getItem('qtdAvaliacoesPendentes'));
   }
 
   qtdConvitesPendentes(): number {
-    return parseInt(sessionStorage.getItem('qtdConvitesPendentes'))
+    return parseInt(sessionStorage.getItem('qtdConvitesPendentes'));
   }
 
 }

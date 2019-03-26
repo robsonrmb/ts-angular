@@ -15,9 +15,9 @@ export class AmigoComponent implements OnInit {
 
   @ViewChild('formUsuarios') formAmigos: NgForm;
 
-  usuario: Usuario
-  listaDeAmigos: Usuario[]
-  mensagem: Mensagem
+  usuario: Usuario;
+  listaDeAmigos: Usuario[];
+  mensagem: Mensagem;
   
   constructor(private amigoService: AmigoService,
               private usuarioService: UsuarioService,
@@ -28,44 +28,44 @@ export class AmigoComponent implements OnInit {
       .listaAmigos(this.usuarioService.getUsuario().id)
       .subscribe(
         (result) => {
-          this.listaDeAmigos = result
+          this.listaDeAmigos = result;
           if (this.listaDeAmigos !== undefined && this.listaDeAmigos.length > 0) {
-            this.mensagem = new Mensagem()
+            this.mensagem = new Mensagem();
           }
         }
-      )
-      this.mensagem = new Mensagem()
+      );
+      this.mensagem = new Mensagem();
   }
 
   retirarComoAmigo(u: Usuario) {
-    let formUsuarioAmigo: FormUsuarioAmigo
-    formUsuarioAmigo = new FormUsuarioAmigo(null, this.usuarioService.getUsuario().id, u.id)
+    let formUsuarioAmigo: FormUsuarioAmigo;
+    formUsuarioAmigo = new FormUsuarioAmigo(null, this.usuarioService.getUsuario().id, u.id);
     this.amigoService.retirarComoAmigo(formUsuarioAmigo)
         .subscribe(
           (result) => {
-            this.retiraUsuarioDaLista(u.id)
-            this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário retirado da lista de amigos com sucesso!!!')
+            this.retiraUsuarioDaLista(u.id);
+            this.mensagem = new Mensagem(MensagemEnum.S, 'Usuário retirado da lista de amigos com sucesso!!!');
           },
           (error) => {
-            this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao retirar usuário como amigo!!!')
+            this.mensagem = new Mensagem(MensagemEnum.E, 'Erro ao retirar usuário como amigo!!!');
           }
-        )
+        );
   }
 
   avaliar(u: Usuario) {
-    this.router.navigate(['/cadAvaliacao', u.id])
+    this.router.navigate(['/cadAvaliacao', u.id]);
   }
 
   convidarParaJogar(u: Usuario) {
-    this.router.navigate(['/cadConvite', u.id])
+    this.router.navigate(['/cadConvite', u.id]);
   }
 
   isListaDeAmigosVazia(): boolean {
     if (this.listaDeAmigos === undefined || this.listaDeAmigos.length === 0) {
-      this.mensagem = new Mensagem(MensagemEnum.W, 'Nenhum amigo encontrado.')
-      return true
-    }else{
-      return false
+      this.mensagem = new Mensagem(MensagemEnum.W, 'Nenhum amigo encontrado.');
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -73,14 +73,14 @@ export class AmigoComponent implements OnInit {
     let i: number
     for (i=0; i<this.listaDeAmigos.length; i++) {
       if (id === this.listaDeAmigos[i].id) {
-        this.listaDeAmigos.splice(i, 1)
+        this.listaDeAmigos.splice(i, 1);
       }
     }
-    //splice(indexOf(item), 1) //Aula 52 do curso 1 de Angular (inicio da aula)
+    // splice(indexOf(item), 1) //Aula 52 do curso 1 de Angular (inicio da aula)
   }
 
   exibirEstatisticas(u: Usuario) {
-    this.router.navigate(['/pesqEstatisticas', u.id])
+    this.router.navigate(['/pesqEstatisticas', u.id]);
   }
 
 }

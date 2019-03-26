@@ -11,7 +11,7 @@ export class ErroService {
   constructor() { }
 
   getErroGlobal(): ErroGlobal {
-    return this.erroGlobal
+    return this.erroGlobal;
   }
   
   setErroGlobal(mensagem: string,
@@ -21,53 +21,53 @@ export class ErroService {
                 path: string,
                 stackTrace: string) {
 
-      this.erroGlobal.mensagem = mensagem
-      this.erroGlobal.status = status
-      this.erroGlobal.data = data
-      this.erroGlobal.causa = causa
-      this.erroGlobal.path = path
-      this.erroGlobal.stackTrace = stackTrace
+      this.erroGlobal.mensagem = mensagem;
+      this.erroGlobal.status = status;
+      this.erroGlobal.data = data;
+      this.erroGlobal.causa = causa;
+      this.erroGlobal.path = path;
+      this.erroGlobal.stackTrace = stackTrace;
   }
 
   getMensagem(): String {
-    return this.erroGlobal.mensagem
+    return this.erroGlobal.mensagem;
   }
   setMensagem(msg: string) {
-    this.erroGlobal.mensagem = msg
+    this.erroGlobal.mensagem = msg;
   }
 
   getStatus(): String {
-    return this.erroGlobal.status
+    return this.erroGlobal.status;
   }
   setStatus(status: string) {
-    this.erroGlobal.status = status
+    this.erroGlobal.status = status;
   }
 
   getData(): String {
-    return this.erroGlobal.data
+    return this.erroGlobal.data;
   }
   setData(data: string) {
-    this.erroGlobal.data = data
+    this.erroGlobal.data = data;
   }
 
   getCausa(): String {
-    return this.erroGlobal.causa
+    return this.erroGlobal.causa;
   }
   setCausa(causa: string) {
-    this.erroGlobal.causa = causa
+    this.erroGlobal.causa = causa;
   }
 
   getPath(): String {
-    return this.erroGlobal.path
+    return this.erroGlobal.path;
   }
   setPath(path: string) {
-    this.erroGlobal.path = path
+    this.erroGlobal.path = path;
   }
 
   getStackTrace(): String {
-    return this.erroGlobal.stackTrace
+    return this.erroGlobal.stackTrace;
   }
   setStackTrace(st: string) {
-    this.erroGlobal.stackTrace = st
+    this.erroGlobal.stackTrace = st;
   }
 }

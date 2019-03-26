@@ -12,8 +12,8 @@ import { Usuario } from '../../models';
 })
 export class HeadersComponent implements OnInit {
 
-  private nome: string = ""
-  private usuario: Usuario
+  private nome: string = '';
+  private usuario: Usuario;
 
   constructor(private loginService: LoginService,
               private usuarioService: UsuarioService,
@@ -24,7 +24,7 @@ export class HeadersComponent implements OnInit {
   }
 
   getNome() {
-    this.usuarioService.getUsuario().nome
+    this.usuarioService.getUsuario().nome;
   }
 
   isLogado(): boolean {
@@ -35,9 +35,9 @@ export class HeadersComponent implements OnInit {
     return this.loginService.isUsuarioLogado()
     */
     if (sessionStorage.getItem('usuarioLogado') == 'S') {
-      this.nome = sessionStorage.getItem('nomeUsuario')
+      this.nome = sessionStorage.getItem('nomeUsuario');
       return true;
-    }else{
+    } else {
       return false;
     }
   }

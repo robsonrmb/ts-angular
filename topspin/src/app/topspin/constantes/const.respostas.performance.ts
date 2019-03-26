@@ -1,18 +1,18 @@
 export const RESPOSTAS_PERFORMANCE = [
     {
-        chave: "RUIM",
-        valor: "RUIM"
+        chave: 'RUIM',
+        valor: 'RUIM'
     },
     {
-        chave: "REGULAR",
-        valor: "REGULAR"
+        chave: 'REGULAR',
+        valor: 'REGULAR'
     },
     {
-        chave: "BOM",
-        valor: "BOM"
+        chave: 'BOM',
+        valor: 'BOM'
     },
     {
-        chave: "OTIMO",
-        valor: "ÓTIMO"
+        chave: 'OTIMO',
+        valor: 'ÓTIMO'
     }
 ]

@@ -15,31 +15,31 @@ export class PesquisaAvaliacaoComponent implements OnInit {
 
   @ViewChild('formAvaliacoes') formAvaliacoes: NgForm;
 
-  avaliacao: Avaliacao
-  listaDeAvaliacoes: Avaliacao[]
-  mensagem: Mensagem
+  avaliacao: Avaliacao;
+  listaDeAvaliacoes: Avaliacao[];
+  mensagem: Mensagem;
   
   constructor(private avaliacaoService: AvaliacaoService,
               private usuarioService: UsuarioService,
               private router: Router) { }
 
   ngOnInit() {
-    let aval: Avaliacao = new Avaliacao()
-    aval.idUsuario = this.usuarioService.getUsuario().id
-    this.mensagem = new Mensagem()
+    let aval: Avaliacao = new Avaliacao();
+    aval.idUsuario = this.usuarioService.getUsuario().id;
+    this.mensagem = new Mensagem();
 
     this.avaliacaoService
       .listaAvaliacoesRecebidasPendentesPorUsuario(aval)
       .subscribe(
         (result) => {
-          this.listaDeAvaliacoes = result
-          this.mensagem = new Mensagem()
+          this.listaDeAvaliacoes = result;
+          this.mensagem = new Mensagem();
           if (this.listaDeAvaliacoes == undefined || this.listaDeAvaliacoes.length == 0) {
-            this.mensagem = new Mensagem(MensagemEnum.W, 'Nenhuma avaliação encontrada!!!')
+            this.mensagem = new Mensagem(MensagemEnum.W, 'Nenhuma avaliação encontrada!!!');
           }
           
         }
-      )
+      );
   }
 
   confirmaAvaliacao(aval: Avaliacao) {
@@ -47,11 +47,11 @@ export class PesquisaAvaliacaoComponent implements OnInit {
       .aceita(aval)
       .subscribe(
         (result) => {
-          //this.mensagem = new Mensagem(MensagemEnum.S, 'Avaliação confirmada com sucesso!!!')
-          this.router.navigate(['dashboard'])
+          // this.mensagem = new Mensagem(MensagemEnum.S, 'Avaliação confirmada com sucesso!!!')
+          this.router.navigate(['dashboard']);
         },
         (error) => this.mensagem = new Mensagem(MensagemEnum.S, 'Erro ao confirmar avaliação!!!')
-      )
+      );
   }
 
   recusaAvaliacao(aval: Avaliacao) {
@@ -63,15 +63,15 @@ export class PesquisaAvaliacaoComponent implements OnInit {
           this.router.navigate(['dashboard'])
         },
         (error) => this.mensagem = new Mensagem(MensagemEnum.S, 'Erro ao recusar avaliação!!!')
-      )
+      );
   }
 
   isListaDeAvaliacoesVazia(): boolean {
     if (this.listaDeAvaliacoes === undefined || this.listaDeAvaliacoes.length === 0) {
-      this.mensagem = new Mensagem(MensagemEnum.W, 'Nenhuma avaliação encontrada!!!')
-      return true
-    }else{
-      return false
+      this.mensagem = new Mensagem(MensagemEnum.W, 'Nenhuma avaliação encontrada!!!');
+      return true;
+    } else {
+      return false;
     }
   }
 

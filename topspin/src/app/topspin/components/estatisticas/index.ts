@@ -1,2 +1,2 @@
-export * from './estatisticas.component'
-export * from './estatisticas.module'
+export * from './estatisticas.component';
+export * from './estatisticas.module';

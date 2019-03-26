@@ -1,10 +1,10 @@
 export const SEXOS = [
     {
-        chave: "M",
-        valor: "Masculino"
+        chave: 'M',
+        valor: 'Masculino'
     },
     {
-        chave: "F",
-        valor: "Feminino"
+        chave: 'F',
+        valor: 'Feminino'
     }
 ]

@@ -12,13 +12,13 @@ import { Usuario } from '../models/usuario.model';
 })
 export class UsuarioService {
 
-  private usuario: Usuario
-  private logado: boolean
+  private usuario: Usuario;
+  private logado: boolean;
 
   constructor(private http: Http) { }
 
   setUsuarioLogado(logado: boolean) {
-    this.logado = logado
+    this.logado = logado;
   }
 
   isUsuarioLogado(): boolean {
@@ -26,20 +26,20 @@ export class UsuarioService {
   }
   
   setUsuario(usuario: Usuario) {
-    this.usuario = usuario
+    this.usuario = usuario;
   }
 
   getUsuario(): Usuario {
     if (this.usuario == undefined) {
       //retirar este if quando interceptor funcionar.
       if (sessionStorage.getItem('usuarioLogado') == 'S') {
-        this.usuario = new Usuario()
-        this.usuario.id = sessionStorage.getItem('idUsuario')
-        this.usuario.email = sessionStorage.getItem('emailUsuario')
-        this.usuario.nome = sessionStorage.getItem('nomeUsuario')
+        this.usuario = new Usuario();
+        this.usuario.id = sessionStorage.getItem('idUsuario');
+        this.usuario.email = sessionStorage.getItem('emailUsuario');
+        this.usuario.nome = sessionStorage.getItem('nomeUsuario');
       }
     }
-    return this.usuario
+    return this.usuario;
   }
 
   inclui(usuario: Usuario): Observable<string> {

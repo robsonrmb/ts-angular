@@ -49,7 +49,7 @@ export class ConviteService {
       return this.http.get(`${environment.recurso_url.convites}/usuario/${convite.idUsuario}/status/${convite.status}`)
                       .map(response => response.json())
                       .catch(error => throwError(error));
-    }else{
+    } else {
       return this.http.get(`${environment.recurso_url.convites}/usuario/${convite.idUsuario}`)
                       .map(response => response.json())
                       .catch(error => throwError(error));
@@ -61,7 +61,7 @@ export class ConviteService {
       return this.http.get(`${environment.recurso_url.convites}/convidado/${convite.idConvidado}/status/${convite.status}`)
                       .map(response => response.json())
                       .catch(error => throwError(error));
-    }else{
+    } else {
       return this.http.get(`${environment.recurso_url.convites}/convidado/${convite.idConvidado}`)
                       .map(response => response.json())
                       .catch(error => throwError(error));
