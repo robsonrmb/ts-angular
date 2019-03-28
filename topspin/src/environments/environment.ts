@@ -15,12 +15,12 @@ export const environment = {
     area_avaliacoes: 'http://localhost:8080/area-avaliacoes'
   },
   firebase: {
-    apiKey: "AIzaSyAFMvgAHhkwtfHCRTypNv03pJIu9aqXgAU",
-    authDomain: "topspin-f80d8.firebaseapp.com",
-    databaseURL: "https://topspin-f80d8.firebaseio.com",
-    projectId: "topspin-f80d8",
-    storageBucket: "topspin-f80d8.appspot.com",
-    messagingSenderId: "1083130810457"
+    apiKey: 'AIzaSyAFMvgAHhkwtfHCRTypNv03pJIu9aqXgAU',
+    authDomain: 'topspin-f80d8.firebaseapp.com',
+    databaseURL: 'https://topspin-f80d8.firebaseio.com',
+    projectId: 'topspin-f80d8',
+    storageBucket: 'topspin-f80d8.appspot.com',
+    messagingSenderId: '1083130810457'
   }
 };
 

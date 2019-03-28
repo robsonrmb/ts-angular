@@ -8,19 +8,19 @@ import { LoginService, UsuarioService } from "../../services";
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-    mensagemErro: string
+    mensagemErro: string;
 
     constructor(private injector: Injector,
                 private router: Router) {}
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         
-        console.log('Interceptando ...', request)
-        const loginService = this.injector.get(LoginService)
+        console.log('Interceptando ...', request);
+        const loginService = this.injector.get(LoginService);
         if (!loginService.isUsuarioLogado()) {
             if (window.sessionStorage.getItem('usuarioLogado') == 'S') {
                 
-                const usuarioService = this.injector.get(UsuarioService)
+                const usuarioService = this.injector.get(UsuarioService);
                 usuarioService.buscaPorEmail(window.sessionStorage.getItem('emailUsuario'))
                     .subscribe(
                         (response) => {
@@ -33,7 +33,7 @@ export class AuthInterceptor implements HttpInterceptor {
                     });
             }
         }
-        return next.handle(request)
+        return next.handle(request);
     }
 
 }

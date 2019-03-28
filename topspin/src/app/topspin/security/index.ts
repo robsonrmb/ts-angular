@@ -1,2 +1,2 @@
-export * from './permissao'
-export * from './interceptors'
+export * from './permissao';
+export * from './interceptors';

@@ -9,12 +9,12 @@ import { ErroService } from 'src/app/topspin/services';
 })
 export class GlobalComponent implements OnInit {
 
-  erroGlobal: ErroGlobal
+  erroGlobal: ErroGlobal;
 
   constructor(private erroService: ErroService) { }
 
   ngOnInit() {
-    this.erroGlobal = this.erroService.getErroGlobal()
+    this.erroGlobal = this.erroService.getErroGlobal();
   }
 
 }

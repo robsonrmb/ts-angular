@@ -1,4 +1,4 @@
-import { AvaliacaoTipo } from "./avaliacao-tipo.model";
+import { AvaliacaoTipo } from './avaliacao-tipo.model';
 
 export class AvaliacaoArea {
 

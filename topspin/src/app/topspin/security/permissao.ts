@@ -10,15 +10,15 @@ export class Permissao implements CanLoad, CanActivate {
     checkAuthentication(path: string): boolean {
         //const loggedIn = this.loginService.isUsuarioLogado()
         
-        let loggedIn: boolean = false
+        let loggedIn: boolean = false;
         if (window.sessionStorage.getItem('usuarioLogado') == 'S') {
-            loggedIn = true
+            loggedIn = true;
         }
         
         if (!loggedIn) {
-            this.loginService.handleLogin('/login')
+            this.loginService.handleLogin('/login');
         }
-        return loggedIn
+        return loggedIn;
     }
 
     canLoad(route: Route): boolean {
