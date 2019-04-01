@@ -24,6 +24,7 @@ export class CadastroUsuarioComponent implements OnInit {
   constructor(private usuarioService: UsuarioService) { }
 
   ngOnInit() {
+    console.log(this.usuarioService.getUsuario().id)
     this.usuarioService.buscaPorId(this.usuarioService.getUsuario().id)
         .subscribe(
           (result) => {
