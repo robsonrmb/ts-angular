@@ -14,13 +14,13 @@
       <div class="card border-info">
         <div class="card-header text-center"><h2>{{erroGlobal.status}}</h2></div>
         <div class="card-body text-center bg-light">
-            <h4>
-                {{erroGlobal.data}}<br />
-                {{erroGlobal.path}}<br />
-                {{erroGlobal.mensagem}}<br />
-                {{erroGlobal.causa}}<br />
-                {{erroGlobal.stackTrace}}
-            </h4>
+            <h5>
+                <p>Data: <br />{{erroGlobal.data}}</p>
+                <p>Path: <br />{{erroGlobal.path}}</p>
+                <p>Mensagem: <br />{{erroGlobal.mensagem}}</p>
+                <p>Causa: <br />{{erroGlobal.causa}}</p>
+                <p>StackTrace: <br />{{erroGlobal.stackTrace}}</p>
+            </h5>
         </div>
       </div>
     </div>

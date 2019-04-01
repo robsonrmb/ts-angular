@@ -11,15 +11,12 @@ export class ApplicationErrorHandler implements ErrorHandler {
                 private erroService: ErroService){}
 
     handleError(error: any) {
-        console.log('Error handler em execução!!!')
-        console.log("Status code: ", error.status);
-        console.log("Stack Trace: ", error.stackTrace)
         if (!environment.production) {
             console.log(error);
         }
         switch (error.status) {
             case 400:
-                alert("Erro 400.")
+                let json = JSON.parse(error._body);
                 this.erroService.setErroGlobal(error.mensagem, 
                                                error.status, 
                                                error.dada, 
@@ -27,13 +24,12 @@ export class ApplicationErrorHandler implements ErrorHandler {
                                                error.path, 
                                                error.stackTrace)
 
-                this.erroService.setMensagem("Mensagem.....")
-                this.erroService.setStatus("Status.....")
-                this.erroService.setData("Data.....")
-                this.erroService.setCausa("Causa.....")
-                this.erroService.setPath("Path.....")
-                this.erroService.setStackTrace("Stack Trace.....")
-                alert("Carregou o serviço...")
+                this.erroService.setMensagem(json.msgs)
+                this.erroService.setStatus(json.status)
+                this.erroService.setData(json.date)
+                this.erroService.setCausa(json.causa)
+                this.erroService.setPath(json.path)
+                this.erroService.setStackTrace(json.stackTrace)
 
                 this.injector.get(Router).navigate(['/erro-global'])
                 break;
