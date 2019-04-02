@@ -12,15 +12,20 @@
 
     <div class="col-12">
       <div class="card border-info">
-        <div class="card-header text-center"><h2>{{erroGlobal.status}}</h2></div>
-        <div class="card-body text-center bg-light">
-            <h5>
-                <p>Data: <br />{{erroGlobal.data}}</p>
-                <p>Path: <br />{{erroGlobal.path}}</p>
-                <p>Mensagem: <br />{{erroGlobal.mensagem}}</p>
-                <p>Causa: <br />{{erroGlobal.causa}}</p>
-                <p>StackTrace: <br />{{erroGlobal.stackTrace}}</p>
-            </h5>
+        <div class="card-header text-center"><h2>ERRO {{erroGlobal.status}}</h2></div>
+        <div class="card-body bg-light">
+          <h5>
+            <p><b>Data:</b> {{erroGlobal.data | date:'dd-MM-yyyy'}}</p>
+            <p><b>Path:</b> {{erroGlobal.path}}</p>
+            <p><b>Mensagem:</b> {{erroGlobal.mensagem}}</p>
+            <p><b>Causa:</b> {{erroGlobal.causa}}</p>
+          </h5>
+          <h6>
+            <p>
+              <b>StackTrace (+)</b><br />
+              {{erroGlobal.stackTrace}}
+            </p>
+          </h6>
         </div>
       </div>
     </div>

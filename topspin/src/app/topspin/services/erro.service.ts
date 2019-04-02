@@ -14,15 +14,15 @@ export class ErroService {
     return this.erroGlobal;
   }
   
-  setErroGlobal(mensagem: string,
-                status: string,
+  setErroGlobal(status: string,
+                mensagem: string,
                 data: string,
                 causa: string,
                 path: string,
                 stackTrace: string) {
 
-      this.erroGlobal.mensagem = mensagem;
       this.erroGlobal.status = status;
+      this.erroGlobal.mensagem = mensagem;
       this.erroGlobal.data = data;
       this.erroGlobal.causa = causa;
       this.erroGlobal.path = path;

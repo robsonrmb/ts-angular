@@ -16,34 +16,41 @@ export class ApplicationErrorHandler implements ErrorHandler {
         }
         switch (error.status) {
             case 400:
-                let json = JSON.parse(error._body);
-                this.erroService.setErroGlobal(error.mensagem, 
-                                               error.status, 
-                                               error.dada, 
-                                               error.causa, 
-                                               error.path, 
-                                               error.stackTrace)
-
-                this.erroService.setMensagem(json.msgs)
-                this.erroService.setStatus(json.status)
-                this.erroService.setData(json.date)
-                this.erroService.setCausa(json.causa)
-                this.erroService.setPath(json.path)
-                this.erroService.setStackTrace(json.stackTrace)
-
-                this.injector.get(Router).navigate(['/erro-global'])
+                this.carregarServico(error);    
+                this.injector.get(Router).navigate(['/erro-global']);
                 break;
+
             case 401:
-                //Direcionar para uma página de erro.
-
-                this.injector.get(Router).navigate(['/login'])
+                this.injector.get(Router).navigate(['/login']);
                 break;
+                
             case 404:
-                //Direcionar para uma página de erro.
+                this.carregarServico(error);
                 this.injector.get(Router).navigate(['/erro-global'])
                 break;
         }
         //handleError(error)
     }
 
+    private carregarServico(error: any) {
+        let json = JSON.parse(error._body);
+        this.erroService.setErroGlobal(error.status, 
+                                       json.msgs, 
+                                       json.date, 
+                                       json.causa, 
+                                       json.path, 
+                                       json.stackTrace)
+        /*
+        this.erroService.setStatus(error.status)
+        this.erroService.setMensagem(json.msgs)
+        this.erroService.setData(json.date)
+        this.erroService.setCausa(json.causa)
+        this.erroService.setPath(json.path)
+        this.erroService.setStackTrace(json.stackTrace)
+        */
+                
+    }
+
 }
+
+
