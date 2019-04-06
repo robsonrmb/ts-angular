@@ -10,9 +10,9 @@ import { ExternalComponent } from './topspin/components/external/external.compon
 import { externalURLProvider } from './topspin/constantes/externalUrlProvider';
 import { EstatisticasComponent} from './topspin/components/estatisticas';
 import { GlobalComponent } from './topspin/components/erros';
+import { PaginaNaoEncontradaComponent } from './topspin/components/pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 const routes: Routes = [
-  {path: '', component: DashboardComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'dashboard', component: DashboardComponent, canLoad: [Permissao], canActivate: [Permissao]},
   {path: 'login', component: EntradaLoginComponent},
   {path: 'cadastroLogin', component: CadastroLoginComponent},
@@ -27,7 +27,10 @@ const routes: Routes = [
   //{path: 'cadJogo', loadChildren: './topspin/components/jogos/jogos.module#JogosModule'},
   
   {path: 'erro-global', component: GlobalComponent},
-  {path: 'externalRedirect', resolve: {url: externalURLProvider,}, component: ExternalComponent,}
+  {path: 'externalRedirect', resolve: {url: externalURLProvider,}, component: ExternalComponent,},
+
+  {path: '', redirectTo: '/dashboard', pathMatch: 'full'},
+  {path: '**', component: PaginaNaoEncontradaComponent}
 ];
 
 @NgModule({

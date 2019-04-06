@@ -24,6 +24,7 @@ import { externalURLProvider } from './topspin/constantes/externalUrlProvider';
 import { ExternalComponent } from './topspin/components/external/external.component';
 import { ApplicationErrorHandler } from './app.error-handler';
 import { GlobalComponent } from './topspin/components/erros/global/global.component';
+import { PaginaNaoEncontradaComponent } from './topspin/components/pagina-nao-encontrada/pagina-nao-encontrada.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { GlobalComponent } from './topspin/components/erros/global/global.compon
     HeadersComponent,
     FootersComponent,
     ExternalComponent,
-    GlobalComponent
+    GlobalComponent,
+    PaginaNaoEncontradaComponent
   ],
   imports: [
     BrowserModule,
