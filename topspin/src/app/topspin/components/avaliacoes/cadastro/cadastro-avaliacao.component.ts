@@ -169,15 +169,15 @@ export class CadastroAvaliacaoComponent implements OnInit {
       }
 
     }else if(this.tipoAvaliacao == 3) {
-      console.log('entrou Reactive');
       if (this.avaliacao.idAvaliado === undefined) {
-        console.log('usuario undefined');
         this.router.navigate([`reactive/0`]);
       } else {
-        console.log('usuario selecionado');
-        this.router.navigate([`reactive/${this.avaliacao.idAvaliado}`]);
+        if (this.avaliacao.idAvaliado == '') {
+          this.router.navigate([`reactive/0`]);
+        } else {
+          this.router.navigate([`reactive/${this.avaliacao.idAvaliado}`]);
+        }
       }
     }
   }
-
 }
