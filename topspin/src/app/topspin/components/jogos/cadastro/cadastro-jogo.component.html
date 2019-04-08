@@ -26,7 +26,6 @@
               <input  name="data" 
                       id="data" 
                       [(ngModel)]="jogo.dataJogoFormatada"
-                      #data="ngModel"
                       class="form-control" 
                       maxlength="10"
                       required 
@@ -40,7 +39,6 @@
               <label form="tipo">Tipo de jogo</label>
               <select name="tipo" 
                       [(ngModel)]="jogo.tipo" 
-                      #tipo="ngModel"
                       class="form-control" 
                       required>
                 <option *ngFor="let tipo of tipos" value="{{tipo.chave}}">{{tipo.valor}}</option>
@@ -52,7 +50,6 @@
               <label form="resultado">Resultado da partida</label>
               <select name="resultado" 
                       [(ngModel)]="jogo.resultado" 
-                      #resultado="ngModel"
                       class="form-control" 
                       required>
                 <option *ngFor="let resultado of resultados" value="{{resultado.chave}}">{{resultado.valor}}</option>
@@ -64,7 +61,6 @@
               <label form="placar">Placar da partida</label>
               <select name="placar" 
                       [(ngModel)]="jogo.placar" 
-                      #placar="ngModel" 
                       class="form-control" 
                       required>
                 <option *ngFor="let placar of placares" value="{{placar.chave}}">{{placar.valor}}</option>
@@ -79,7 +75,6 @@
               <input  name="qtdTieVencidos" 
                       id="qtdTieVencidos" 
                       [(ngModel)]="jogo.qtdTieVencidos"
-                      #qtdTieVencidos="ngModel"
                       class="form-control" 
                       pattern="^[0-9]*$" 
                       somenteNumeros />
@@ -91,7 +86,6 @@
               <input  name="qtdTiePerdidos" 
                       id="qtdTiePerdidos" 
                       [(ngModel)]="jogo.qtdTiePerdidos"
-                      #qtdTiePerdidos="ngModel"
                       class="form-control" 
                       pattern="^[0-9]*$" 
                       somenteNumeros/>
@@ -100,9 +94,13 @@
         </div>
         <div class="row">
           <div class="col-12">
+            <!-- 
+              Não precisaria passar o formJogos como parâmetro, pois
+              o two-binding está feito com o objeto jogo.
+            -->
             <input 
               type="submit"
-              (click)="salvar()"
+              (click)="salvar(formJogos)" 
               value="Salvar"
               [disabled]="!formJogos.form.valid"
               class="btn btn-primary"
@@ -120,6 +118,10 @@
       <!-- fim do conteúdo -->
 
     </div>
+
+    <app-form-debug [form]="formJogos"></app-form-debug>
+    <p>.</p>
+    <p>.</p>
 
   </div>
   <footer class="sticky-footer">

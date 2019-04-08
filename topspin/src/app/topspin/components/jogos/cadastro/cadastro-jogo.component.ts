@@ -12,7 +12,7 @@ import { UsuarioService, JogoService } from '../../../services';
 })
 export class CadastroJogoComponent implements OnInit {
 
-  @ViewChild('formJogos') formJogos: NgForm;
+  //@ViewChild('formJogos') formJogos: NgForm;
 
   private jogo: Jogo;
   tipos: ChaveValor[];
@@ -33,7 +33,8 @@ export class CadastroJogoComponent implements OnInit {
     this.mensagem = new Mensagem();
   }
 
-  salvar() {
+  salvar(form: NgForm) {
+    //console.log(form)
     let msg = this.validaFormulario();
     this.jogo.data = this.converteData_ddMMyyyy_para_yyyyMMdd(this.jogo.dataJogoFormatada);
     if (msg == "") {
