@@ -68,28 +68,30 @@
             </div>  
           </div>
         </div>
-        <div class="row">
-          <div class="col-4">  
-            <div class="form-group">
-              <label form="qtdTieVencidos">Qtd de tiebreaks vencidos</label>
-              <input  name="qtdTieVencidos" 
-                      id="qtdTieVencidos" 
-                      [(ngModel)]="jogo.qtdTieVencidos"
-                      class="form-control" 
-                      pattern="^[0-9]*$" 
-                      somenteNumeros />
-            </div>  
-          </div>
-          <div class="col-4">  
-            <div class="form-group">
-              <label form="qtdTiePerdidos">Qtd de tiebreaks perdidos</label>
-              <input  name="qtdTiePerdidos" 
-                      id="qtdTiePerdidos" 
-                      [(ngModel)]="jogo.qtdTiePerdidos"
-                      class="form-control" 
-                      pattern="^[0-9]*$" 
-                      somenteNumeros/>
-            </div>  
+        <div ngModelGroup="tiebreaks">
+          <div class="row">
+            <div class="col-4">  
+              <div class="form-group">
+                <label form="qtdTieVencidos">Qtd de tiebreaks vencidos</label>
+                <input  name="qtdTieVencidos" 
+                        id="qtdTieVencidos" 
+                        [(ngModel)]="jogo.qtdTieVencidos"
+                        class="form-control" 
+                        pattern="^[0-9]*$" 
+                        somenteNumeros />
+              </div>  
+            </div>
+            <div class="col-4">  
+              <div class="form-group">
+                <label form="qtdTiePerdidos">Qtd de tiebreaks perdidos</label>
+                <input  name="qtdTiePerdidos" 
+                        id="qtdTiePerdidos" 
+                        [(ngModel)]="jogo.qtdTiePerdidos"
+                        class="form-control" 
+                        pattern="^[0-9]*$" 
+                        somenteNumeros/>
+              </div>  
+            </div>
           </div>
         </div>
         <div class="row">
