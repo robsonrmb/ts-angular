@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ChaveValor, Usuario, FormUsuarioAmigo, Mensagem } from '../../../models';
 import { ESTADOS, MensagemEnum } from '../../../constantes';
 import { UsuarioService, AmigoService } from '../../../services';
+import { EstadosbrService } from '../../shared/services/estadosbr.service';
 
 @Component({
   selector: 'app-pesquisa-usuario',
@@ -18,18 +19,26 @@ export class PesquisaUsuarioComponent implements OnInit {
   usuario: Usuario;
   listaDeUsuarios: Usuario[];
   estados: ChaveValor[];
+  estadosBR: ChaveValor[];
   mensagem: Mensagem;
   mensagemGrid: string;
   
   constructor(private usuarioService: UsuarioService,
               private amigoService: AmigoService,
-              private router: Router) { }
+              private router: Router,
+              private estadosbrService: EstadosbrService) { }
 
   ngOnInit() {
     this.usuario = new Usuario();
     this.estados = ESTADOS;
     this.mensagem = new Mensagem();
     this.mensagemGrid = '';
+
+    this.estadosbrService.getEstadosBR()
+      .subscribe(dados => {
+        this.estadosBR = dados;
+        this.estados = this.estadosBR;
+      })
   }
 
   pesquisar() {
