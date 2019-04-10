@@ -27,7 +27,8 @@
                       [(ngModel)]="usuario.estado" 
                       #estado="ngModel"
                       class="form-control">
-                  <option *ngFor="let estado of estados" value="{{estado.chave}}">{{estado.valor}}</option>
+                  <!-- <option *ngFor="let estado of estados" value="{{estado.chave}}">{{estado.valor}}</option> -->
+                  <option *ngFor="let estado of estadosBR_O | async" value="{{estado.chave}}">{{estado.valor}}</option>
               </select>
             </div>
           </div>

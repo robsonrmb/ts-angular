@@ -6,6 +6,7 @@ import { ChaveValor, Usuario, FormUsuarioAmigo, Mensagem } from '../../../models
 import { ESTADOS, MensagemEnum } from '../../../constantes';
 import { UsuarioService, AmigoService } from '../../../services';
 import { EstadosbrService } from '../../shared/services/estadosbr.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pesquisa-usuario',
@@ -20,6 +21,7 @@ export class PesquisaUsuarioComponent implements OnInit {
   listaDeUsuarios: Usuario[];
   estados: ChaveValor[];
   estadosBR: ChaveValor[];
+  estadosBR_O: Observable<ChaveValor[]>;
   mensagem: Mensagem;
   mensagemGrid: string;
   
@@ -30,15 +32,22 @@ export class PesquisaUsuarioComponent implements OnInit {
 
   ngOnInit() {
     this.usuario = new Usuario();
-    this.estados = ESTADOS;
     this.mensagem = new Mensagem();
     this.mensagemGrid = '';
 
+    // Carregando a lista de estados a partir da constante
+    this.estados = ESTADOS;
+
+    // Carregando a lista de estados a partir do serviço
     this.estadosbrService.getEstadosBR()
       .subscribe(dados => {
         this.estadosBR = dados;
         this.estados = this.estadosBR;
       })
+    
+    // Carregando a lista de estados a partir do serviço usando o pipe async.
+    //<option *ngFor="let estado of estados | async" value="{{estado.chave}}">{{estado.valor}}</option>
+    this.estadosBR_O = this.estadosbrService.getEstadosBR(); 
   }
 
   pesquisar() {
