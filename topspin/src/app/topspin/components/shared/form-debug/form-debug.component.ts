@@ -18,7 +18,7 @@ export class FormDebugComponent implements OnInit {
   }
 
   rendered(): boolean {
-    return (this.form && !this.ambiente_producao)
+    return (this.form && !this.ambiente_producao);
   }
 
 }
